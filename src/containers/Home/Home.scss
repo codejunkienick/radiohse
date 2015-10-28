@@ -54,6 +54,7 @@ p {
 @keyframes slide-in {
     100% { transform: translateY(0%); }
 }
+
 .nav {
   float: right;
 
@@ -175,7 +176,7 @@ p {
     bottom: -38px;
     margin-left: -38px;
     & > div {
-      background-color: #0097a7 !important; 
+      background-color: transparent !important; 
     }
     button, button span {
       display: inline-block;

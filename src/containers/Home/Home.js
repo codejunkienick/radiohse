@@ -1,22 +1,88 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Scroll from 'react-scroll';
 import {
   Dialog,
   TextField,
   FlatButton,
   RaisedButton,
-  FloatingActionButton
+  FloatingActionButton,
+  IconMenu,
+  MenuItem
 } from 'material-ui/lib/index';
 import Sticky from 'react-sticky';
 import { Member } from 'components';
 
+const PlayButton = () => {
+  return (
+    <FloatingActionButton backgroundColor="#0097a7" style={{width: '76px', height: '76px'}}>
+      <span style={{width: '76px', height: '76px', lineHeight: '76px'}}>
+        <svg style={{width: '38px', marginTop: '19px'}} viewBox="0 0 24 24">
+          <path fill="#FFFFFF" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+        </svg>
+      </span>
+    </FloatingActionButton>
+  );
+};
+
+
 export default class Home extends Component {
+  static propTypes = {
+    members: PropTypes.array
+  }
+  static defaultProps = {
+    members: [
+      {
+        name: 'Данил Губайдулин',
+        rank: 'Руководитель',
+        avatar: '',
+        vk: 'http://vk.com/microsoft_dude'
+      },
+      {
+        name: 'Никита Потеряев',
+        rank: 'Разработчик',
+        avatar: '',
+        vk: 'http://vk.com/codejunkienick',
+        twitter: 'http://twitter.com/codejunkienick'
+      },
+      {
+        name: 'Вадим Кропотин',
+        rank: 'Редактор',
+        avatar: '',
+        vk: 'http://vk.com/v.kropotin'
+      },
+      {
+        name: 'Игорь Старостюк',
+        rank: 'DJ',
+        avatar: '',
+        vk: 'http://vk.com/hartss'
+      },
+      {
+        name: 'Дарья Сапко',
+        rank: 'DJ',
+        avatar: '',
+      },
+      {
+        name: 'Екатерина Дегтярева',
+        rank: '-',
+        avatar: '',
+      },
+    ]
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      headerOffset: '0px',
+    };
+  }
+
   render() {
     const styles = require('./Home.scss');
     const standardActions = [
       { text: 'Понял', onClick: () => {this.refs.aboutSystem.dismiss();} }
     ];
-    // require the logo image both from client and server
+    const { members } = this.props;
+    const { headerOffset } = this.state;
     return (
       <div>
         <Dialog
@@ -26,8 +92,15 @@ export default class Home extends Component {
           Adipisicing commodi velit sint fugit dolores quas. Natus dolores cumque ab illo accusantium. At exercitationem architecto sequi atque quam nemo numquam maiores. Voluptas consequuntur natus ea alias officia eveniet, exercitationem.
         </Dialog>
         <Scroll.Element name="header" className={styles.header}>
-          <div className="container">
-            <Sticky className={styles.topNav} stickyClass={styles.stickyTopNav} topOffset={60}>
+          <div style={{paddingTop: headerOffset}} className="container">
+            <Sticky
+              className={styles.topNav}
+              stickyClass={styles.stickyTopNav}
+              topOffset={60}
+              onStickyStateChange={(isSticky) => {
+                if (isSticky) this.setState({headerOffset: '110px'}); // TODO: remove hardcoded value
+                else this.setState({headerOffset: '0px'});
+              }}>
                 <div className={styles.social}>
                   <a href=""><i className="icon-facebook-with-circle" /></a>
                   <a href=""><i className="icon-twitter-with-circle" /></a>
@@ -54,13 +127,7 @@ export default class Home extends Component {
                 <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.dislike} href="#">Нет</FlatButton>
               </div>
               <div className={styles.play}>
-                <FloatingActionButton backgroundColor="#0097a7" style={{width: '76px', height: '76px'}}>
-                  <span style={{width: '76px', height: '76px', lineHeight: '76px'}}>
-                    <svg style={{width: '38px', marginTop: '19px'}} viewBox="0 0 24 24">
-                      <path fill="#FFFFFF" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
-                    </svg>
-                  </span>
-                </FloatingActionButton>
+                <PlayButton />
               </div>
             </div>
           </div>
@@ -70,24 +137,10 @@ export default class Home extends Component {
           <div className="container">
             <h2>Наша команда</h2>
             <ul className="large-block-grid-6 medium-block-grid-3 small-block-grid-1">
-              <li>
-                <Member />
-              </li>
-              <li>
-                <Member />
-              </li>
-              <li>
-                <Member />
-              </li>
-              <li>
-                <Member />
-              </li>
-              <li>
-                <Member />
-              </li>
-              <li>
-                <Member />
-              </li>
+              {members.map((member) => {
+                return <li><Member {...member} /></li>;
+              })
+              }
             </ul>
           </div>
         </Scroll.Element>
