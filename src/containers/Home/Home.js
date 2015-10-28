@@ -1,170 +1,142 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { CounterButton, GithubButton } from 'components';
+import {
+  Dialog,
+  TextField,
+  FlatButton,
+  RaisedButton,
+  FloatingActionButton
+} from 'material-ui/lib/index';
+
+import { Member } from 'components';
 
 export default class Home extends Component {
   render() {
     const styles = require('./Home.scss');
+    const standardActions = [
+      { text: 'Понял', onClick: () => {this.refs.aboutSystem.dismiss();} }
+    ];
     // require the logo image both from client and server
-    const logoImage = require('./logo.png');
     return (
-      <div className={styles.home}>
-        <div className={styles.masthead}>
+      <div>
+        <Dialog
+          title="О нашей клевой системе"
+          actions={standardActions}
+          ref="aboutSystem">
+          Adipisicing commodi velit sint fugit dolores quas. Natus dolores cumque ab illo accusantium. At exercitationem architecto sequi atque quam nemo numquam maiores. Voluptas consequuntur natus ea alias officia eveniet, exercitationem.
+        </Dialog>
+        <div className={styles.header}>
           <div className="container">
-            <div className={styles.logo}>
-              <p>
-                <img src={logoImage}/>
-              </p>
+            <div className={styles.topNav}>
+              <div className={styles.social}>
+                <a href=""><img src={require('./assets/vk5.svg')} alt=""/></a>
+                <a href=""><img src={require('./assets/twitter.svg')} alt=""/></a>
+              </div>
+              <div className={styles.nav}>
+                <a href="">Главная</a>
+                <a href="">Команда</a>
+                <a href="">О радио</a>
+                <a href="">Связаться</a>
+              </div>
             </div>
-            <h1>React Redux Example</h1>
-
-            <h2>All the modern best practices in one example.</h2>
-
-            <p>
-              <a className={styles.github} href="https://github.com/erikras/react-redux-universal-hot-example"
-                 target="_blank">
-                <i className="fa fa-github"/> View on Github
-              </a>
-            </p>
-            <GithubButton user="erikras"
-                          repo="react-redux-universal-hot-example"
-                          type="star"
-                          width={160}
-                          height={30}
-                          count large/>
-            <GithubButton user="erikras"
-                          repo="react-redux-universal-hot-example"
-                          type="fork"
-                          width={160}
-                          height={30}
-                          count large/>
-
-            <p className={styles.humility}>
-              Created and maintained by <a href="https://twitter.com/erikras" target="_blank">@erikras</a>.
-            </p>
+            <div className={styles.logo}>
+              <img src={require('./assets/logo.svg')} alt="" />
+              Радиовышка
+            </div>
+            <div className={styles.player}>
+              <div className={styles.song}>
+                Disclosure - F for you
+              </div>
+              <div className={styles.controls}>
+                <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.like} href="#">Да</FlatButton>
+                <a href="#" onClick={() => this.refs.aboutSystem.show()} className={styles.controlLabel}>Нравится песня?</a>
+                <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.dislike} href="#">Нет</FlatButton>
+              </div>
+              <div className={styles.play}>
+                <FloatingActionButton backgroundColor="#0097a7" style={{width: '76px', height: '76px'}}>
+                  <span style={{width: '76px', height: '76px', lineHeight: '76px'}}>
+                    <svg style={{width: '38px', marginTop: '19px'}} viewBox="0 0 24 24">
+                      <path fill="#FFFFFF" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                    </svg>
+                  </span>
+                </FloatingActionButton>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="container">
-          <div className={styles.counterContainer}>
-            <CounterButton multireducerKey="counter1"/>
-            <CounterButton multireducerKey="counter2"/>
-            <CounterButton multireducerKey="counter3"/>
+        <div className={styles.members}>
+          <div className="container">
+            <h2>Наша команда</h2>
+            <ul className="large-block-grid-6 medium-block-grid-3 small-block-grid-1">
+              <li>
+                <Member />
+              </li>
+              <li>
+                <Member />
+              </li>
+              <li>
+                <Member />
+              </li>
+              <li>
+                <Member />
+              </li>
+              <li>
+                <Member />
+              </li>
+              <li>
+                <Member />
+              </li>
+            </ul>
           </div>
-
-          <p>This starter boilerplate app uses the following technologies:</p>
-
-          <ul>
-            <li>
-              <del>Isomorphic</del>
-              {' '}
-              <a href="https://medium.com/@mjackson/universal-javascript-4761051b7ae9">Universal</a> rendering
-            </li>
-            <li>Both client and server make calls to load data from separate API server</li>
-            <li><a href="https://github.com/facebook/react" target="_blank">React</a></li>
-            <li><a href="https://github.com/rackt/react-router" target="_blank">React Router</a></li>
-            <li><a href="http://expressjs.com" target="_blank">Express</a></li>
-            <li><a href="http://babeljs.io" target="_blank">Babel</a> for ES6 and ES7 magic</li>
-            <li><a href="http://webpack.github.io" target="_blank">Webpack</a> for bundling</li>
-            <li><a href="http://webpack.github.io/docs/webpack-dev-middleware.html" target="_blank">Webpack Dev Middleware</a>
-            </li>
-            <li><a href="https://github.com/glenjamin/webpack-hot-middleware" target="_blank">Webpack Hot Middleware</a></li>
-            <li><a href="https://github.com/rackt/redux" target="_blank">Redux</a>'s futuristic <a
-              href="https://facebook.github.io/react/blog/2014/05/06/flux.html" target="_blank">Flux</a> implementation
-            </li>
-            <li><a href="https://github.com/gaearon/redux-devtools" target="_blank">Redux Dev Tools</a> for next
-              generation DX (developer experience).
-              Watch <a href="https://www.youtube.com/watch?v=xsSnOQynTHs" target="_blank">Dan Abramov's talk</a>.
-            </li>
-            <li><a href="https://github.com/rackt/redux-router" target="_blank">Redux Router</a> Keep
-              your router state in your Redux store
-            </li>
-            <li><a href="http://eslint.org" target="_blank">ESLint</a> to maintain a consistent code style</li>
-            <li><a href="https://github.com/erikras/redux-form" target="_blank">redux-form</a> to manage form state
-              in Redux
-            </li>
-            <li><a href="https://github.com/erikras/multireducer" target="_blank">multireducer</a> combine several
-              identical reducer states into one key-based reducer</li>
-            <li><a href="https://github.com/webpack/style-loader" target="_blank">style-loader</a> and <a
-              href="https://github.com/jtangelder/sass-loader" target="_blank">sass-loader</a> to allow import of
-              stylesheets
-            </li>
-            <li><a href="https://github.com/shakacode/bootstrap-sass-loader" target="_blank">bootstrap-sass-loader</a> and <a
-              href="https://github.com/gowravshekar/font-awesome-webpack" target="_blank">font-awesome-webpack</a> to customize Bootstrap and FontAwesome
-            </li>
-            <li><a href="http://socket.io/">socket.io</a> for real-time communication</li>
-          </ul>
-
-          <h3>Features demonstrated in this project</h3>
-
-          <dl>
-            <dt>Multiple components subscribing to same redux store slice</dt>
-            <dd>
-              The <code>App.js</code> that wraps all the pages contains an <code>InfoBar</code> component
-              that fetches data from the server initially, but allows for the user to refresh the data from
-              the client. <code>About.js</code> contains a <code>MiniInfoBar</code> that displays the same
-              data.
-            </dd>
-            <dt>Server-side data loading</dt>
-            <dd>
-              The <Link to="/widgets">Widgets page</Link> demonstrates how to fetch data asynchronously from
-              some source that is needed to complete the server-side rendering. <code>Widgets.js</code>'s
-              <code>fetchData()</code> function is called before the widgets page is loaded, on either the server
-              or the client, allowing all the widget data to be loaded and ready for the page to render.
-            </dd>
-            <dt>Data loading errors</dt>
-            <dd>
-              The <Link to="/widgets">Widgets page</Link> also demonstrates how to deal with data loading
-              errors in Redux. The API endpoint that delivers the widget data intentionally fails 33% of
-              the time to highlight this. The <code>clientMiddleware</code> sends an error action which
-              the <code>widgets</code> reducer picks up and saves to the Redux state for presenting to the user.
-            </dd>
-            <dt>Session based login</dt>
-            <dd>
-              On the <Link to="/login">Login page</Link> you can submit a username which will be sent to the server
-              and stored in the session. Subsequent refreshes will show that you are still logged in.
-            </dd>
-            <dt>Redirect after state change</dt>
-            <dd>
-              After you log in, you will be redirected to a Login Success page. This <strike>magic</strike> logic
-              is performed in <code>componentWillReceiveProps()</code> in <code>App.js</code>, but it could
-              be done in any component that listens to the appropriate store slice, via Redux's <code>@connect</code>,
-              and pulls the router from the context.
-            </dd>
-            <dt>Auth-required views</dt>
-            <dd>
-              The aforementioned Login Success page is only visible to you if you are logged in. If you try
-              to <Link to="/loginSuccess">go there</Link> when you are not logged in, you will be forwarded back
-              to this home page. This <strike>magic</strike> logic is performed by the
-              <code>onEnter</code> hook within <code>routes.js</code>.
-            </dd>
-            <dt>Forms</dt>
-            <dd>
-              The <Link to="/survey">Survey page</Link> uses the
-              still-experimental <a href="https://github.com/erikras/redux-form" target="_blank">redux-form</a> to
-              manage form state inside the Redux store. This includes immediate client-side validation.
-            </dd>
-            <dt>WebSockets / socket.io</dt>
-            <dd>
-              The <Link to="/chat">Chat</Link> uses the socket.io technology for real-time
-              commnunication between clients. You need to <Link to="/login">login</Link> first.
-            </dd>
-          </dl>
-
-          <h3>From the author</h3>
-
-          <p>
-            I cobbled this together from a wide variety of similar "starter" repositories. As I post this in June 2015,
-            all of these libraries are right at the bleeding edge of web development. They may fall out of fashion as
-            quickly as they have come into it, but I personally believe that this stack is the future of web development
-            and will survive for several years. I'm building my new projects like this, and I recommend that you do,
-            too.
-          </p>
-
-          <p>Thanks for taking the time to check this out.</p>
-
-          <p>– Erik Rasmussen</p>
         </div>
+
+        <div className={styles.about}>
+          <div className="container" style={{textAlign: 'center', width: '600px'}}>
+            <h2>О радио</h2>
+            <p>Consectetur recusandae ad dignissimos odit omnis rem earum saepe soluta magnam id magnam cumque ipsa ut harum tenetur sequi? Ut iste quaerat neque reprehenderit inventore sed quas dolorum nam animi. Ipsum blanditiis blanditiis nemo nisi repellat dolor distinctio, voluptatum numquam est eveniet. Perferendis ab perspiciatis magnam cumque culpa alias atque veritatis non eius. Nihil ab dolor esse aliquid possimus molestias!</p>
+          </div>
+        </div>
+
+        <div className={styles.contact}>
+          <div className="container">
+            <h2>Связаться с нами</h2>
+            <div className={styles.contactRow}>
+              <TextField
+                fullWidth
+                hintText="Напишите заголовок"
+                floatingLabelText="Заголовок" />
+            </div>
+
+            <div className={styles.contactRow}>
+              <TextField
+                fullWidth
+                hintText="Email"
+                floatingLabelText="e-mail" />
+            </div>
+
+            <div className={styles.contactRow} style={{marginBottom: '40px'}}>
+              <TextField
+                fullWidth
+                floatingLabelText="Сообщение"
+                hintText="Содержание сообщение"
+                rows={4}
+                multiLine />
+            </div>
+            <div className={styles.contactRow}>
+              <RaisedButton label="Отправить" backgroundColor="#0097a7" labelColor="#ffffff" className={styles.sendButton}/>
+            </div>
+
+          </div>
+        </div>
+
+        <div className={styles.footer}>
+          <span className={styles.footerText}>
+            2015 &copy; РАДИОВЫШКА <br />
+            Разработано <a className={styles.ktknLink}href="http://katakana.me">katakana.me</a>
+          </span>
+
+        </div>
+
       </div>
     );
   }
