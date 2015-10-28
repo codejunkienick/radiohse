@@ -7,7 +7,7 @@ import {
   RaisedButton,
   FloatingActionButton
 } from 'material-ui/lib/index';
-
+import Sticky from 'react-sticky';
 import { Member } from 'components';
 
 export default class Home extends Component {
@@ -27,19 +27,19 @@ export default class Home extends Component {
         </Dialog>
         <Scroll.Element name="header" className={styles.header}>
           <div className="container">
-            <div className={styles.topNav}>
-              <div className={styles.social}>
-                <a href=""><i className="icon-facebook-with-circle" /></a>
-                <a href=""><i className="icon-twitter-with-circle" /></a>
-                <a href=""><i className="icon-vk-with-circle" /></a>
-              </div>
-              <div className={styles.nav}>
-                <Scroll.Link to="header" spy smooth duration={500}>Главная</Scroll.Link>
-                <Scroll.Link to="team" spy smooth offset={50} duration={600}>Команда</Scroll.Link>
-                <Scroll.Link to="about" spy smooth offset={50} duration={700}>О радио</Scroll.Link>
-                <Scroll.Link to="contact" spy smooth offset={50} duration={800}>Связаться</Scroll.Link>
-              </div>
-            </div>
+            <Sticky className={styles.topNav} stickyClass={styles.stickyTopNav} topOffset={60}>
+                <div className={styles.social}>
+                  <a href=""><i className="icon-facebook-with-circle" /></a>
+                  <a href=""><i className="icon-twitter-with-circle" /></a>
+                  <a href=""><i className="icon-vk-with-circle" /></a>
+                </div>
+                <div className={styles.nav}>
+                  <Scroll.Link to="header" spy smooth duration={500}>Главная</Scroll.Link>
+                  <Scroll.Link to="team" spy smooth offset={50} duration={600}>Команда</Scroll.Link>
+                  <Scroll.Link to="about" spy smooth offset={50} duration={700}>О радио</Scroll.Link>
+                  <Scroll.Link to="contact" spy smooth offset={50} duration={800}>Связаться</Scroll.Link>
+                </div>
+            </Sticky>
             <div className={styles.logo}>
               <img src={require('./logo.svg')} alt="" />
               Радиовышка
