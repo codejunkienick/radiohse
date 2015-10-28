@@ -64,7 +64,7 @@ p {
     padding: 4px;
     margin-right: 8px;
     font-size: 18px;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.3);
     &:hover {
       color: rgba(255,255,255,1);
     }
@@ -135,10 +135,10 @@ p {
     line-height: 1 !important;
   }
   .like {
-    margin-right: 20px !important;
+    margin-right: 18px !important;
   }
   .dislike {
-    margin-left: 20px !important;
+    margin-left: 18px !important;
   }
   .controlLabel {
     margin-top: 10px;
@@ -158,6 +158,9 @@ p {
     right: 50%;
     bottom: -38px;
     margin-left: -38px;
+    & > div {
+      background-color: #0097a7 !important; 
+    }
     button, button span {
       display: inline-block;
       width: 76px !important;
