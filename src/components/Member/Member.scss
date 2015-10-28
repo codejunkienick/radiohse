@@ -26,9 +26,17 @@
     color: #455a64;
   }
   .socialLinks {
+
     transition: all 350ms ease-in;
+    font-size: 18px;
     opacity: 0;
-  }
+    text-align: center;
+    margin-top: 4px;
+    a {
+      margin-right: 4px;
+      padding: 4px;
+    }
+  } 
   &:hover {
     .socialLinks { opacity: 1; }
   }

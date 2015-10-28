@@ -29,7 +29,9 @@ export default class Member extends Component {
           <div className={styles.rank}>CEO</div>
         </div>
         <div className={styles.socialLinks}>
-          some link
+          <a href=""><i className="icon-facebook-with-circle" /></a>
+          <a href=""><i className="icon-twitter-with-circle" /></a>
+          <a href=""><i className="icon-vk-with-circle" /></a>
         </div>
       </Paper>
     );

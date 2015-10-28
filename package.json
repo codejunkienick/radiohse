@@ -3,10 +3,7 @@
   "description": "Website for radio hse.",
   "author": "Nickita Poteryaev <psychedelicespresso@gmail.com> (http://github.com/codejunkienick)",
   "license": "MIT",
-  "version": "0.0.1",
-  "repository": {
-    "type": "git",
-  },
+  "version": "0.0.5",
   "keywords": [
     "react",
     "isomorphic",
@@ -41,7 +38,7 @@
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
         "PORT": 8080,
-        "APIPORT": 3030
+        "APIPORT": 3333
       }
     },
     "start-prod-api": {
@@ -49,7 +46,7 @@
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "production",
-        "APIPORT": 3030
+        "APIPORT": 3333
       }
     },
     "start-dev": {
@@ -103,6 +100,7 @@
     "react-inline-css": "2.0.0",
     "react-redux": "^4.0.0",
     "react-router": "1.0.0-rc3",
+    "react-scroll": "^0.30.0",
     "redux": "3.0.4",
     "redux-form": "3.0.0-beta-1",
     "serialize-javascript": "1.1.2",

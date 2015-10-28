@@ -1,3 +1,8 @@
+$vk: #45668e;
+$facebook: #3b5998;
+$instagram: #3f729b;
+$twitter: #55acee;
+
 h2 {
   font-family: 'Roboto Condensed';
   font-weight: bold;
@@ -5,6 +10,8 @@ h2 {
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 42px;
+  margin-top: 0;
+  line-height:1;
   color: #455a54;
 }
 p {
@@ -56,29 +63,26 @@ p {
     display: inline-block;
     padding: 4px;
     margin-right: 8px;
-  }
-  a img {
-    width: 18px;
-    height: 18px;
-  }
-}
-.vk {
-  &:hover {
-    img {
-      fill: #000;
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+    &:hover {
+      color: rgba(255,255,255,1);
     }
   }
 }
 
-.facebook {
-  width: 22px;
-  height: 22px;
-  background: url('./assets/vk5.svg');
-  background-size: 22px 22px;
-  fill: #fff;
-  display: inline-block;
+.vk {
+  &:hover {color: $vk;}
 }
-
+.facebook  {
+  &:hover {color: $facebook;}
+}
+.instagram  {
+  &:hover {color: $instagram;}
+}
+.twitter  {
+  &:hover {color: $twitter;}
+}
 .logo {
   width: 380px;
   margin: 0 auto;
@@ -131,16 +135,20 @@ p {
     line-height: 1 !important;
   }
   .like {
-    margin-right: 27px !important;
+    margin-right: 20px !important;
   }
   .dislike {
-    margin-left: 27px !important;
+    margin-left: 20px !important;
   }
   .controlLabel {
     margin-top: 10px;
     text-align: center;
     color: #dae8f0;
     opacity: 0.58;
+    transition: opacity 350ms ease-in;
+    &:hover {
+      opacity: 1;
+    }
   }
   .play {
     width: 76px;
