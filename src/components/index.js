@@ -5,3 +5,4 @@
  *
  */
 export Member from './Member/Member';
+export PlayButton from './PlayButton/PlayButton';
