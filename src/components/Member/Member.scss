@@ -1,14 +1,40 @@
+//TODO: Fix on tablets text position
 .member {
-  text-align: center;
   padding: 8px;
-  min-height: 220px;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media only screen and (min-width: 64.063em) {
+    text-align: center;
+    min-height: 220px;
+  }
+
   .avatar {
-    display: inline-block;
+    float: left;
+    margin-right: 16px;
     max-width: 100px;
     max-height: 100px;
     border-radius: 10000px;
     overflow: hidden;
-    margin-bottom: 14px;
+    @media only screen and (min-width: 64.063em) {
+      text-align: center;
+      float: none;
+      display: inline-block;
+      margin-bottom: 14px;
+      margin-right: 0;
+    }
+  }
+  .credentials {
+    float: left;
+    margin-top: 20px;
+    @media only screen and (min-width: 64.063em) {
+      float: none;
+      display: inline-block;
+    }
   }
   .avatarDemo {
     width: 100px;
@@ -29,13 +55,19 @@
   .socialLinks {
 
     transition: all 350ms ease-in;
-    font-size: 18px;
+    font-size: 28px;
     opacity: 0;
-    text-align: center;
     margin-top: 4px;
+    @media only screen and (min-width: 64.063em) {
+      font-size: 18px;
+      text-align: center;
+    }
     a {
-      margin-right: 4px;
-      padding: 4px;
+      margin-right: 12px;
+      @media only screen and (min-width: 64.063em) {
+        margin-right: 4px;
+        padding: 4px;
+      }
     }
   } 
   &:hover {

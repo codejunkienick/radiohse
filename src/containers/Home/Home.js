@@ -5,6 +5,7 @@ import {
   TextField,
   FlatButton,
   RaisedButton,
+  LeftNav,
   IconMenu,
 } from 'material-ui/lib/index';
 import Sticky from 'react-sticky';
@@ -30,12 +31,6 @@ export default class Home extends Component {
         twitter: 'http://twitter.com/codejunkienick'
       },
       {
-        name: 'Вадим Кропотин',
-        rank: 'Редактор',
-        avatar: '',
-        vk: 'http://vk.com/v.kropotin'
-      },
-      {
         name: 'Игорь Старостюк',
         rank: 'DJ',
         avatar: '',
@@ -47,8 +42,14 @@ export default class Home extends Component {
         avatar: '',
       },
       {
-        name: 'Екатерина Дегтярева',
-        rank: '-',
+        name: 'Вадим Кропотин',
+        rank: 'Редактор',
+        avatar: '',
+        vk: 'http://vk.com/v.kropotin'
+      },
+      {
+        name: 'Екатерина Дегтярёва',
+        rank: 'Редактор',
         avatar: '',
       },
     ]
@@ -57,18 +58,31 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      windowWidth: '',
       headerOffset: '0px',
     };
   }
 
-  render() {
-    const { members } = this.props;
-    const { headerOffset } = this.state;
-    const styles = require('./Home.scss');
-
-    const MenuItem = require('material-ui/lib/menus/menu-item');
+  componentDidMount() {
     const injectTapEventPlugin = require('react-tap-event-plugin');
     injectTapEventPlugin(); // hack for material-ui, until material-ui 1.0
+    this.setState({windowWidth: window.innerWidth});
+    window.addEventListener('resize', this.handleResize.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize() {
+    this.setState({windowWidth: window.innerWidth});
+  }
+
+  render() {
+    const { members } = this.props;
+    const { headerOffset, windowWidth } = this.state;
+    const styles = require('./Home.scss');
+    const MenuItem = require('material-ui/lib/menus/menu-item');
 
     const standardActions = [
       { text: 'Понял', onClick: () => {this.refs.aboutSystem.dismiss();} }
@@ -78,6 +92,12 @@ export default class Home extends Component {
         <PlayButton ref="playButton" />
       </div>
     );
+    const menuItems = [
+      { route: 'get-started', text: 'Get Started' },
+      { route: 'customization', text: 'Customization' },
+      { route: 'components', text: 'Components' },
+    ];
+    console.log(windowWidth);
     return (
       <div>
         <Dialog
@@ -86,14 +106,25 @@ export default class Home extends Component {
           ref="aboutSystem">
           Adipisicing commodi velit sint fugit dolores quas. Natus dolores cumque ab illo accusantium. At exercitationem architecto sequi atque quam nemo numquam maiores. Voluptas consequuntur natus ea alias officia eveniet, exercitationem.
         </Dialog>
+
+        <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+
         <Scroll.Element name="header" className={styles.header}>
           <div style={{paddingTop: headerOffset}} className="container">
+            <div className={styles.burger}>
+              <a onClick={() => {this.refs.leftNav.toggle();}}>
+                <svg style={{width: '28px', height: '28px', marginTop: '8px'}} viewBox="0 0 24 24">
+                  <path fill="#fff" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                </svg>
+              </a>
+            </div>
+            { windowWidth > 1024 &&
             <Sticky
               className={styles.topNav}
               stickyClass={styles.stickyTopNav}
               topOffset={60}
               onStickyStateChange={(isSticky) => {
-                if (isSticky) this.setState({headerOffset: '110px'}); // TODO: remove hardcoded value
+                if (isSticky && windowWidth > 1024) this.setState({headerOffset: '110px'}); // TODO: remove hardcoded value
                 else this.setState({headerOffset: '0px'});
               }}>
                 <div className={styles.social}>
@@ -103,11 +134,12 @@ export default class Home extends Component {
                 </div>
                 <div className={styles.nav}>
                   <Scroll.Link to="header" spy smooth duration={500}>Главная</Scroll.Link>
-                  <Scroll.Link to="team" spy smooth offset={50} duration={600}>Команда</Scroll.Link>
-                  <Scroll.Link to="about" spy smooth offset={50} duration={700}>О радио</Scroll.Link>
-                  <Scroll.Link to="contact" spy smooth offset={50} duration={800}>Связаться</Scroll.Link>
+                  <Scroll.Link to="team" spy smooth offset={10} duration={600}>Команда</Scroll.Link>
+                  <Scroll.Link to="about" spy smooth offset={10} duration={700}>О радио</Scroll.Link>
+                  <Scroll.Link to="contact" spy smooth offset={10} duration={800}>Связаться</Scroll.Link>
                 </div>
             </Sticky>
+            }
             <div className={styles.logo}>
               <img src={require('./logo.svg')} alt="" />
               Радиовышка
@@ -142,6 +174,35 @@ export default class Home extends Component {
           </div>
         </Scroll.Element>
 
+        <div className={styles.socialMobile}>
+          <div className="container">
+            <h2>Мы в соцсетях</h2>
+            <a className={styles.facebook} href=""><i className="icon-facebook-with-circle" /></a>
+            <a className={styles.twitter} href=""><i className="icon-twitter-with-circle" /></a>
+            <a className={styles.vk} href=""><i className="icon-vk-with-circle" /></a>
+          </div>
+        </div>
+
+        <div className={styles.playerMobile}>
+          <div className="container">
+            <h2>Сейчас играет</h2>
+            <div className={styles.song}>
+              Disclosure - F for you
+            </div>
+            <div className={styles.controls}>
+              <div className={styles.like}>
+                <RaisedButton label="Like" backgroundColor="#4caf50" labelColor="#ffffff" fullWidth/>
+              </div>
+              <div className={styles.dislike}>
+                <RaisedButton label="Disike" backgroundColor="#FF5252" labelColor="#ffffff" fullWidth/>
+              </div>
+            </div>
+            <div className={styles.disclamer}>
+                <a href="#" onClick={() => this.refs.aboutSystem.show()} className={styles.controlLabel}>Нравится песня?</a>
+            </div>
+          </div>
+        </div>
+
         <Scroll.Element name="team" className={styles.members}>
           <div className="container">
             <h2>Наша команда</h2>
@@ -155,7 +216,7 @@ export default class Home extends Component {
         </Scroll.Element>
 
         <Scroll.Element name="about" className={styles.about}>
-          <div className="container" style={{textAlign: 'center', width: '600px'}}>
+          <div className="container" style={{textAlign: 'center', maxWidth: '600px'}}>
             <h2>О радио</h2>
             <p>Consectetur recusandae ad dignissimos odit omnis rem earum saepe soluta magnam id magnam cumque ipsa ut harum tenetur sequi? Ut iste quaerat neque reprehenderit inventore sed quas dolorum nam animi. Ipsum blanditiis blanditiis nemo nisi repellat dolor distinctio, voluptatum numquam est eveniet. Perferendis ab perspiciatis magnam cumque culpa alias atque veritatis non eius. Nihil ab dolor esse aliquid possimus molestias!</p>
           </div>

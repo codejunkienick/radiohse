@@ -36,7 +36,7 @@ export default class Html extends Component {
 
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-          <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
+          <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
 
           <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400italic,500&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
 

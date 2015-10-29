@@ -4,15 +4,20 @@ $instagram: #3f729b;
 $twitter: #55acee;
 
 h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
   font-family: 'Roboto Condensed';
   font-weight: bold;
-  font-size: 28px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 42px;
+  letter-spacing: 2px;
   margin-top: 0;
   line-height:1;
   color: #455a54;
+  @media only screen and (min-width: 64.063em) { 
+    text-transform: uppercase;
+    margin-bottom: 42px;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
 }
 p {
   font-family: 'Roboto';
@@ -22,32 +27,51 @@ p {
 
 .header {
   width: 100%;
-  background: url('./header_bg.jpg') no-repeat center center;
-  background-size: cover;
+  background-color: #0277BD;
+  @media only screen and (min-width: 64.063em) { 
+    background: url('./header_bg.jpg') no-repeat center center;
+    background-size: cover;
+  }
 }
 
+.burger {
+
+  @media only screen and (min-width: 64.063em) { 
+    display: none;
+  }
+}
 
 .topNav {
-  padding: 10px 40px;
-  margin-bottom: 50px;
-  background-color: rgba(0,0,0,0);
+  display: none;
 
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
+  @media only screen and (min-width: 64.063em) { 
+    display: block;
+    padding: 10px 40px;
+    margin-bottom: 50px;
+    background-color: rgba(0,0,0,0);
+
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
   }
 }
 .stickyTopNav {
-  padding: 10px 40px;
-  background-color: rgba(0,0,0,0.35);
-  transition: all 400ms ease-in;
-  transform: translateY(-100%);
-  animation: slide-in 0.5s forwards;
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
+  display: none;
+
+  @media only screen and (min-width: 64.063em) { 
+    display: block;
+    padding: 10px 40px;
+    background-color: rgba(0,0,0,0.35);
+    transition: all 400ms ease-in;
+    transform: translateY(-100%);
+    animation: slide-in 0.5s forwards;
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
   }
 }
 
@@ -57,7 +81,6 @@ p {
 
 .nav {
   float: right;
-
   a {
     font-family: 'Roboto';
     display: inline-block;
@@ -87,42 +110,43 @@ p {
     }
   }
 }
-
-.vk {
-  &:hover {color: $vk;}
-}
-.facebook  {
-  &:hover {color: $facebook;}
-}
-.instagram  {
-  &:hover {color: $instagram;}
-}
-.twitter  {
-  &:hover {color: $twitter;}
-}
 .logo {
-  width: 380px;
   margin: 0 auto;
+  margin-bottom: 34px;
   font-family: 'Roboto';
-  font-size: 40px;
   font-weight: 500;
   text-transform: uppercase;
   color: #ecf6fc;
   text-align: center;
-  margin-bottom: 34px;
-  padding-bottom: 34px;
-  border-bottom: 1px solid #a5c6db;
+  font-size: 28px;
+  padding-bottom: 20px;
+
+  @media only screen and (min-width: 64.063em) { 
+    width: 380px;
+    font-size: 40px;
+    padding-bottom: 34px;
+    border-bottom: 1px solid #a5c6db;
+
+    img {
+      margin-bottom: 30px;
+    }
+  }
+
   img {
     max-height: 120px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 }
 
 .player {
+  display: none;
   position: relative;
-  width: 340px;
+  width: 340px  ;
   margin: 0 auto;
   padding-bottom: 52px;
+  @media only screen and (min-width: 64.063em) { 
+    display: block;
+  }
   .song {
     font-family: 'Roboto';
     font-style: italic;
@@ -168,13 +192,6 @@ p {
     }
   }
   .play {
-   // width: 76px;
-   // height: 76px;
-   // position: absolute;
-   // left: 50%;
-   // right: 50%;
-   // bottom: -38px;
-   // margin-left: -38px;
     & > div {
       background-color: transparent !important; 
     }
@@ -187,18 +204,105 @@ p {
   }
 }
 
-.members {
-  padding: 80px 0;
+.socialMobile {
+  padding-bottom: 15px;
+  text-align: center;
+  @media only screen and (min-width: 64.063em) { 
+    display: none;
+  }
+  a {
+    font-size: 48px;
+    margin: 0 20px;
+  }
 }
 
+.vk {
+  color: $vk;
+}
+.facebook  {
+  color: $facebook;
+}
+.instagram  {
+  color: $instagram;
+}
+.twitter  {
+  color: $twitter;
+}
 
+.playerMobile {
+  padding: 30px 0 15px;
+  background-color: #FAFAFA;
+  @media only screen and (min-width: 64.063em) { 
+    display: none;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
+  .song {
+    font-size: 18px;
+    font-style: italic; 
+    margin-bottom: 20px;
+  }
+  .controls {
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+  .like {
+    width: 50%;
+    padding-right: 30px;
+    max-width: 200px;
+    float: left;
+  }
+  .dislike {
+    width: 50%;
+    padding-right: 30px;
+    float:left;
+    max-width: 200px;
+  }
+  .disclamer {
+    margin-top: 20px;
+  }
+
+  .controllabel {
+    font-size: 14px;
+    color: #dae8f0;
+    opacity: 0.58;
+    transition: opacity 350ms ease-in;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.members {
+  padding: 40px 0;
+
+  h2 {
+    text-align: center;
+  }
+
+  @media only screen and (min-width: 64.063em) { 
+    h2 {
+      text-align: left;
+    }
+    padding: 80px 0;
+  }
+}
 
 .about {
-  padding: 80px 0;
+  padding: 40px 0;
   text-align: center;
   width: 100%;
   background: url('./about_bg.jpg') no-repeat center center;
   background-size: cover;
+
+  @media only screen and (min-width: 64.063em) { 
+    padding: 80px 0;
+  }
+
   h2, p {
     color: #fefeff;
   }
@@ -208,7 +312,11 @@ p {
 }
 
 .contact {
-  padding: 80px 0;
+  padding: 40px 0;
+
+  @media only screen and (min-width: 64.063em) { 
+    padding: 80px 0;
+  }
   background-color: #eceff1;
   h2 {
     margin-bottom: 25px;
