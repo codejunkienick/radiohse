@@ -5,7 +5,7 @@ export default class Logo extends Component {
     return (
       <div className={styles.logo}>
         <img src={require('./logo.svg')} alt="" />
-        Радиовышка
+        <div style={{textAlign: 'center'}}>Радиовышка</div>
       </div>
     );
   }
