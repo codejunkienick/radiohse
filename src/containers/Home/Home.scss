@@ -97,6 +97,7 @@ p {
   }
 }
 
+
 .social {
   float: left;
   a {
@@ -105,107 +106,16 @@ p {
     margin-right: 8px;
     font-size: 18px;
     color: rgba(255,255,255,0.3);
+    transition: color 350ms ease-in;
     &:hover {
       color: rgba(255,255,255,1);
     }
   }
 }
-.logo {
-  margin: 0 auto;
-  margin-bottom: 34px;
-  font-family: 'Roboto';
-  font-weight: 500;
-  text-transform: uppercase;
-  color: #ecf6fc;
-  text-align: center;
-  font-size: 28px;
-  padding-bottom: 20px;
 
-  @media only screen and (min-width: 64.063em) { 
-    width: 380px;
-    font-size: 40px;
-    padding-bottom: 34px;
-    border-bottom: 1px solid #a5c6db;
-
-    img {
-      margin-bottom: 30px;
-    }
-  }
-
-  img {
-    max-height: 120px;
-    margin-bottom: 10px;
-  }
-}
-
-.player {
-  display: none;
-  position: relative;
-  width: 340px  ;
-  margin: 0 auto;
-  padding-bottom: 52px;
-  @media only screen and (min-width: 64.063em) { 
-    display: block;
-  }
-  .song {
-    font-family: 'Roboto';
-    font-style: italic;
-    font-size: 18px;
-    text-align: center;
-    color: #fff;
-    margin-bottom: 34px;
-  }
-  .controls {
-    &:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-  }
-  .like, .dislike {
-    background-color: transparent important;
-    display: inline-block !important;
-    min-width: 86px !important;
-    padding: 5px 0 6px !important;
-    border: 2px solid #dae8f0 !important;
-    border-radius: 3px;
-    text-align: center;
-    font-family: 'Roboto Condensed' !important;
-    font-weight: 800;
-    color: #dae8f0 !important;
-    line-height: 1 !important;
-  }
-  .like {
-    margin-right: 18px !important;
-  }
-  .dislike {
-    margin-left: 18px !important;
-  }
-  .controlLabel {
-    margin-top: 10px;
-    text-align: center;
-    color: #dae8f0;
-    opacity: 0.58;
-    transition: opacity 350ms ease-in;
-    &:hover {
-      opacity: 1;
-    }
-  }
-  .play {
-    & > div {
-      background-color: transparent !important; 
-    }
-    button, button span {
-      display: inline-block;
-      width: 76px !important;
-      height: 76px !important;
-      line-height: 76px;
-    }
-  }
-}
 
 .socialMobile {
-  padding-bottom: 15px;
+  padding: 20px 0 15px;
   text-align: center;
   @media only screen and (min-width: 64.063em) { 
     display: none;
@@ -229,59 +139,20 @@ p {
   color: $twitter;
 }
 
-.playerMobile {
-  padding: 30px 0 15px;
-  background-color: #FAFAFA;
-  @media only screen and (min-width: 64.063em) { 
-    display: none;
-  }
-  h2 {
-    margin-bottom: 20px;
-  }
-  .song {
-    font-size: 18px;
-    font-style: italic; 
-    margin-bottom: 20px;
-  }
-  .controls {
-    &:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-  }
-  .like {
-    width: 50%;
-    padding-right: 30px;
-    max-width: 200px;
-    float: left;
-  }
-  .dislike {
-    width: 50%;
-    padding-right: 30px;
-    float:left;
-    max-width: 200px;
-  }
-  .disclamer {
-    margin-top: 20px;
-  }
-
-  .controllabel {
-    font-size: 14px;
-    color: #dae8f0;
-    opacity: 0.58;
-    transition: opacity 350ms ease-in;
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
 
 .members {
   padding: 40px 0;
 
   h2 {
     text-align: center;
+  }
+  @media only screen and (max-width: 40.0em) { 
+    :global(.container) {
+      padding: 0;
+    }
+    .memberGrid {
+      li { padding-left: 0; padding-right: 0 }
+    }
   }
 
   @media only screen and (min-width: 64.063em) { 
@@ -311,27 +182,6 @@ p {
   }
 }
 
-.contact {
-  padding: 40px 0;
-
-  @media only screen and (min-width: 64.063em) { 
-    padding: 80px 0;
-  }
-  background-color: #eceff1;
-  h2 {
-    margin-bottom: 25px;
-  }
-}
-.contactRow {
-  max-width: 600px;
-}
-.sendButton {
-  padding-left: 16px;
-  padding-right: 16px;
-  font-family: 'Roboto';
-  font-weight: 500;
-  min-width: 128px;
-}
 
 .footer {
   padding:40px 0px;

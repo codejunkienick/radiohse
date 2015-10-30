@@ -1,0 +1,44 @@
+.playerMobile {
+  padding: 30px 0 15px;
+  background-color: #FAFAFA;
+  @media only screen and (min-width: 64.063em) { 
+    display: none;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
+  .song {
+    font-size: 16px;
+    font-style: italic; 
+    font-family: 'Roboto Condensed';
+    color: #455a64;
+    margin-bottom: 20px;
+  }
+  .controls {
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+  .like {
+    width: 50%;
+    padding-right: 30px;
+    max-width: 200px;
+    float: left;
+  }
+  .dislike {
+    width: 50%;
+    padding-right: 30px;
+    float:left;
+    max-width: 200px;
+  }
+  .disclamer {
+    margin-top: 20px;
+  }
+
+  .controlLabel {
+    font-size: 14px;
+    transition: opacity 350ms ease-in;
+  }
+}

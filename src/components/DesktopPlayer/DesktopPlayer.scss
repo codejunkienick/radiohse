@@ -1,0 +1,65 @@
+.player {
+  display: none;
+  position: relative;
+  width: 340px  ;
+  margin: 0 auto;
+  padding-bottom: 52px;
+  @media only screen and (min-width: 64.063em) { 
+    display: block;
+  }
+  .song {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 34px;
+  }
+  .controls {
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+  .like, .dislike {
+    background-color: transparent important;
+    display: inline-block !important;
+    min-width: 86px !important;
+    padding: 5px 0 6px !important;
+    border: 2px solid #dae8f0 !important;
+    border-radius: 3px;
+    text-align: center;
+    font-family: 'Roboto Condensed' !important;
+    font-weight: 800;
+    color: #dae8f0 !important;
+    line-height: 1 !important;
+  }
+  .like {
+    margin-right: 18px !important;
+  }
+  .dislike {
+    margin-left: 18px !important;
+  }
+  .controlLabel {
+    margin-top: 10px;
+    text-align: center;
+    color: #dae8f0;
+    opacity: 0.58;
+    transition: opacity 350ms ease-in;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .play {
+    & > div {
+      background-color: transparent !important; 
+    }
+    button, button span {
+      display: inline-block;
+      width: 76px !important;
+      height: 76px !important;
+      line-height: 76px;
+    }
+  }
+}

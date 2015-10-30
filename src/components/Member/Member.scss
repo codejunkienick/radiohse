@@ -1,6 +1,18 @@
 //TODO: Fix on tablets text position
+.tapped {
+  background-color: #fafafa !important;
+  padding: 16px 16px !important;
+  .socialLinks {
+    opacity: 1 !important;
+  }
+}
 .member {
-  padding: 8px;
+  padding: 8px 24px;
+  transition: padding 350ms ease-in;
+
+  @media only screen and (max-width: 40.0em) { 
+    padding: 8px 16px;
+  }
 
   &:after {
     content: "";
@@ -32,6 +44,7 @@
     float: left;
     margin-top: 20px;
     @media only screen and (min-width: 64.063em) {
+      margin-top: 0;
       float: none;
       display: inline-block;
     }

@@ -2,14 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import Scroll from 'react-scroll';
 import {
   Dialog,
-  TextField,
-  FlatButton,
-  RaisedButton,
   LeftNav,
-  IconMenu,
 } from 'material-ui/lib/index';
+
 import Sticky from 'react-sticky';
-import { Member, PlayButton } from 'components';
+
+import {
+  Logo,
+  Member,
+  MobilePlayer,
+  DesktopPlayer,
+  ContactForm,
+  MobilePlayButton
+} from 'components';
 
 export default class Home extends Component {
   static propTypes = {
@@ -64,8 +69,6 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    const injectTapEventPlugin = require('react-tap-event-plugin');
-    injectTapEventPlugin(); // hack for material-ui, until material-ui 1.0
     this.setState({windowWidth: window.innerWidth});
     window.addEventListener('resize', this.handleResize.bind(this));
   }
@@ -82,22 +85,19 @@ export default class Home extends Component {
     const { members } = this.props;
     const { headerOffset, windowWidth } = this.state;
     const styles = require('./Home.scss');
-    const MenuItem = require('material-ui/lib/menus/menu-item');
 
     const standardActions = [
       { text: 'Понял', onClick: () => {this.refs.aboutSystem.dismiss();} }
     ];
-    const button = (
-      <div className={styles.play}>
-        <PlayButton ref="playButton" />
-      </div>
-    );
+
     const menuItems = [
-      { route: 'get-started', text: 'Get Started' },
-      { route: 'customization', text: 'Customization' },
-      { route: 'components', text: 'Components' },
+      { route: 'get-started', text: 'Главная' },
+      { route: 'customization', text: 'Команда' },
+      { route: 'components', text: 'О радио' },
+      { route: 'components', text: 'Связаться' },
     ];
     console.log(windowWidth);
+
     return (
       <div>
         <Dialog
@@ -140,39 +140,15 @@ export default class Home extends Component {
                 </div>
             </Sticky>
             }
-            <div className={styles.logo}>
-              <img src={require('./logo.svg')} alt="" />
-              Радиовышка
-            </div>
-            <div className={styles.player}>
-              <div className={styles.song}>
-                Disclosure - F for you
-              </div>
-              <div className={styles.controls}>
-                <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.like} href="#">Да</FlatButton>
-                <a href="#" onClick={() => this.refs.aboutSystem.show()} className={styles.controlLabel}>Нравится песня?</a>
-                <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.dislike} href="#">Нет</FlatButton>
-              </div>
-              <div style={{
 
-                width: '76px',
-                height: '76px',
-                position: 'absolute',
-                left: '50%',
-                right: '50%',
-                bottom: '-38px',
-                marginLeft: '-38px',
-              }}>
-              <IconMenu
-                iconButtonElement={button} width="120px" >
-                <MenuItem primaryText="128 kb/s" />
-                <MenuItem primaryText="192 kb/s" />
-                <MenuItem primaryText="Скачать m3u" />
-              </IconMenu>
-            </div>
-            </div>
+            <Logo />
+
+            <DesktopPlayer />
+
           </div>
         </Scroll.Element>
+
+        <MobilePlayButton />
 
         <div className={styles.socialMobile}>
           <div className="container">
@@ -183,32 +159,14 @@ export default class Home extends Component {
           </div>
         </div>
 
-        <div className={styles.playerMobile}>
-          <div className="container">
-            <h2>Сейчас играет</h2>
-            <div className={styles.song}>
-              Disclosure - F for you
-            </div>
-            <div className={styles.controls}>
-              <div className={styles.like}>
-                <RaisedButton label="Like" backgroundColor="#4caf50" labelColor="#ffffff" fullWidth/>
-              </div>
-              <div className={styles.dislike}>
-                <RaisedButton label="Disike" backgroundColor="#FF5252" labelColor="#ffffff" fullWidth/>
-              </div>
-            </div>
-            <div className={styles.disclamer}>
-                <a href="#" onClick={() => this.refs.aboutSystem.show()} className={styles.controlLabel}>Нравится песня?</a>
-            </div>
-          </div>
-        </div>
+        <MobilePlayer dialog={this.refs.aboutSystem}/>
 
         <Scroll.Element name="team" className={styles.members}>
           <div className="container">
             <h2>Наша команда</h2>
-            <ul className="large-block-grid-6 medium-block-grid-3 small-block-grid-1">
+            <ul className={styles.memberGrid + ' large-block-grid-6 medium-block-grid-3 small-block-grid-1'}>
               {members.map((member) => {
-                return <li><Member {...member} /></li>;
+                return <li><Member windowWidth={windowWidth} {...member} /></li>;
               })
               }
             </ul>
@@ -222,37 +180,8 @@ export default class Home extends Component {
           </div>
         </Scroll.Element>
 
-        <Scroll.Element name="contact" className={styles.contact}>
-          <div className="container">
-            <h2>Связаться с нами</h2>
-            <div className={styles.contactRow}>
-              <TextField
-                fullWidth
-                hintText="Напишите заголовок"
-                floatingLabelText="Заголовок" />
-            </div>
+        <ContactForm />
 
-            <div className={styles.contactRow}>
-              <TextField
-                fullWidth
-                hintText="Email"
-                floatingLabelText="e-mail" />
-            </div>
-
-            <div className={styles.contactRow} style={{marginBottom: '40px'}}>
-              <TextField
-                fullWidth
-                floatingLabelText="Сообщение"
-                hintText="Содержание сообщение"
-                rows={4}
-                multiLine />
-            </div>
-            <div className={styles.contactRow}>
-              <RaisedButton label="Отправить" backgroundColor="#0097a7" labelColor="#ffffff" className={styles.sendButton}/>
-            </div>
-
-          </div>
-        </Scroll.Element>
 
         <div className={styles.footer}>
           <span className={styles.footerText}>
