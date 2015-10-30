@@ -6,8 +6,9 @@ import {
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
 const PlayButton = () => {
+  const styles = require('./MobilePlayButton.scss');
   return (
-    <FloatingActionButton backgroundColor="#0097a7">
+    <FloatingActionButton backgroundColor="#0097a7" className={styles.fix}>
       <svg viewBox="-7 -6 38 38">
         <path fill="#FFFFFF" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
       </svg>
@@ -23,7 +24,6 @@ export default class Logo extends Component {
   }
   render() {
     const styles = require('./MobilePlayButton.scss');
-
 
     const button2 = (
       <span><PlayButton /></span>
