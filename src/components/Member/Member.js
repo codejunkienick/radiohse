@@ -6,7 +6,7 @@ import Tappable from 'react-tappable';
 
 export default class Member extends Component {
   static propTypes = {
-    windowWidth: PropTypes.number,
+    windowWidth: PropTypes.string,
     name: PropTypes.string.isRequired,
     rank: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
@@ -29,7 +29,6 @@ export default class Member extends Component {
     const { depth, tapped } = this.state;
     const { windowWidth, name, rank, avatar, instagram, vk, facebook, twitter} = this.props;
     const paperClasses = styles.member + ' ' + ((tapped && windowWidth < 1024) ? styles.tapped : '');
-    console.log(windowWidth);
     return (
       <Tappable
         onTap={() => {

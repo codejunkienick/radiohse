@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
 
-const title = 'РАДИОВЫШКА - very cool slogan';
-const description = '';
-const image = 'https://react-redux.herokuapp.com/logo.jpg';
+const title = 'РАДИОВЫШКА - Провайдер хорошего настроения';
+const description = 'Онлайн радиостанция Высшей Школы Экономики';
+const image = '/logo.jpg';
 
 const meta = {
   title,
@@ -17,8 +17,8 @@ const meta = {
       'og:title': title,
       'og:description': description,
       'twitter:card': 'summary',
-      'twitter:site': '@erikras',
-      'twitter:creator': '@erikras',
+      'twitter:site': '@codejunkienick',
+      'twitter:creator': '@codejunkienick',
       'twitter:title': title,
       'twitter:description': description,
       'twitter:image': image,

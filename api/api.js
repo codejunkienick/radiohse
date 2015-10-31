@@ -8,6 +8,7 @@ import * as actions from './actions/index';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
+import icecast from 'icecast';
 
 const pretty = new PrettyError();
 const app = express();
@@ -71,6 +72,7 @@ const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
 
+
 if (config.apiPort) {
   const runnable = app.listen(config.apiPort, (err) => {
     if (err) {
@@ -80,8 +82,22 @@ if (config.apiPort) {
     console.info('==> 💻  Send requests to http://localhost:%s', config.apiPort);
   });
 
+  let meta = {};
+  icecast.get('http://137.116.251.106/live', function (res) {
+
+    // log the HTTP response headers 
+    console.error(res.headers);
+
+    // log any "metadata" events that happen 
+    res.on('metadata', function (metadata) {
+      io.on('connection', (socket) => {
+          socket.emit('playermeta', icecast.parse(metadata));
+      });
+    });
+
+  });
+
   io.on('connection', (socket) => {
-    socket.emit('news', {msg: `'Hello World!' from server`});
 
     socket.on('history', () => {
       for (let index = 0; index < bufferSize; index++) {

@@ -65,12 +65,17 @@ export default class Home extends Component {
     this.state = {
       windowWidth: '',
       headerOffset: '0px',
+      playing: false,
+      currentTrack: 'Эфир окончен'
     };
   }
 
   componentDidMount() {
     this.setState({windowWidth: window.innerWidth});
     window.addEventListener('resize', this.handleResize.bind(this));
+    socket.on('playermeta', (data) => {
+      this.setState({currentTrack: data.StreamTitle});
+    });
   }
 
   componentWillUnmount() {
@@ -81,9 +86,20 @@ export default class Home extends Component {
     this.setState({windowWidth: window.innerWidth});
   }
 
+  handlePlay() {
+    const stream = this.refs.stream128;
+    stream.volume = 0.7;
+    if (!this.state.playing) {
+      stream.play();
+    } else {
+      stream.pause();
+    }
+    this.setState({playing: !this.state.playing});
+  }
+
   render() {
     const { members } = this.props;
-    const { headerOffset, windowWidth } = this.state;
+    const { headerOffset, windowWidth, currentTrack } = this.state;
     const styles = require('./Home.scss');
 
     const standardActions = [
@@ -96,10 +112,13 @@ export default class Home extends Component {
       { route: 'components', text: 'О радио' },
       { route: 'components', text: 'Связаться' },
     ];
-    console.log(windowWidth);
 
     return (
       <div>
+        <audio ref="stream128">
+          <source src="http://137.116.251.106/live" />
+        </audio>
+
         <Dialog
           title="О нашей клевой системе"
           actions={standardActions}
@@ -143,12 +162,19 @@ export default class Home extends Component {
 
             <Logo />
 
-            <DesktopPlayer />
+            <DesktopPlayer
+              dialog={this.refs.aboutSystem}
+              currentTrack={currentTrack}
+              isPlaying={this.state.playing}
+              handlePlay={this.handlePlay.bind(this)} />
 
           </div>
         </Scroll.Element>
 
-        <MobilePlayButton />
+        <MobilePlayButton
+          isPlaying={this.state.playing}
+          handlePlay={this.handlePlay.bind(this)} />
+
 
         <div className={styles.socialMobile}>
           <div className="container">
@@ -159,7 +185,10 @@ export default class Home extends Component {
           </div>
         </div>
 
-        <MobilePlayer dialog={this.refs.aboutSystem}/>
+        <MobilePlayer
+          dialog={this.refs.aboutSystem}
+          currentTrack={currentTrack} />
+
 
         <Scroll.Element name="team" className={styles.members}>
           <div className="container">
