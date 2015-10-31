@@ -9,6 +9,7 @@ import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
 import icecast from 'icecast';
+import devnull from 'dev-null';
 
 const pretty = new PrettyError();
 const app = express();
@@ -84,20 +85,17 @@ if (config.apiPort) {
 
   let meta = {};
   icecast.get('http://137.116.251.106/live', function (res) {
-
-    // log the HTTP response headers 
-    console.error(res.headers);
-
     // log any "metadata" events that happen 
     res.on('metadata', function (metadata) {
-      io.on('connection', (socket) => {
-          socket.emit('playermeta', icecast.parse(metadata));
-      });
+       meta = icecast.parse(metadata);
+       io.sockets.emit('playermeta', meta);
     });
-
+    res.pipe(devnull());
   });
 
   io.on('connection', (socket) => {
+
+    socket.emit('playermeta', meta);
 
     socket.on('history', () => {
       for (let index = 0; index < bufferSize; index++) {
