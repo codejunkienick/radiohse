@@ -10,6 +10,9 @@ import http from 'http';
 import SocketIo from 'socket.io';
 import icecast from 'icecast';
 import devnull from 'dev-null';
+import { initDatabase } from './db';
+
+initDatabase();
 
 const pretty = new PrettyError();
 const app = express();
@@ -20,13 +23,12 @@ const io = new SocketIo(server);
 io.path('/ws');
 
 app.use(session({
-  secret: 'react and redux rule!!!!',
+  secret: 'asdkhafu918hjakkjhds8d<F8>a7yshajk',
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 60000 }
 }));
 app.use(bodyParser.json());
-
 
 app.use((req, res) => {
 
@@ -36,6 +38,7 @@ app.use((req, res) => {
   let params = null;
   let apiActions = actions;
   let sliceIndex = 0;
+
 
   for (const actionName of matcher) {
 

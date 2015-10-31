@@ -3,7 +3,7 @@ import DocumentMeta from 'react-document-meta';
 
 const title = 'РАДИОВЫШКА - Провайдер хорошего настроения';
 const description = 'Онлайн радиостанция Высшей Школы Экономики';
-const image = '/logo.jpg';
+const image = 'http://radiohse.com/logo.jpg';
 
 const meta = {
   title,

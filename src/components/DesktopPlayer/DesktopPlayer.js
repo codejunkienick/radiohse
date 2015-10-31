@@ -7,12 +7,15 @@ import {
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import { PlayButton } from 'components';
 
-export default class Logo extends Component {
+export default class DesktopPlayer extends Component {
   static propTypes = {
     dialog: PropTypes.object,
     handlePlay: PropTypes.func,
     isPlaying: PropTypes.bool,
-    currentTrack: PropTypes.string
+    vote: PropTypes.func,
+    voting: PropTypes.bool,
+    voted: PropTypes.bool,
+    currentSong: PropTypes.string
   }
   componentDidMount() {
     const injectTapEventPlugin = require('react-tap-event-plugin');
@@ -27,17 +30,24 @@ export default class Logo extends Component {
       </div>
     );
 
-    const { isPlaying, handlePlay, currentTrack, dialog } = this.props;
+    const { isPlaying, handlePlay, currentSong, dialog, vote, voted } = this.props;
 
     return (
       <div className={styles.player}>
         <div className={styles.song}>
-          {currentTrack}
+          {currentSong}
         </div>
         <div className={styles.controls}>
-          <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.like} href="#">Да</FlatButton>
-          <a href="#" onClick={() => dialog.show()} className={styles.controlLabel}>Нравится песня?</a>
-          <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.dislike} href="#">Нет</FlatButton>
+          {!voted &&
+            <div>
+              <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.like} onClick={() => {vote(currentSong, 'like');}}>Да</FlatButton>
+              <a onClick={() => dialog.show()} className={styles.controlLabel}>Нравится песня?</a>
+              <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.dislike} onClick={() => vote(currentSong, 'dislike')}>Нет</FlatButton>
+            </div>
+          }
+          {voted &&
+            <div style={{color: 'rgba(255,255,255,0.8)', textAlign: 'center', fontSize: '20px'}}>Cпасибо за ваш голос!</div>
+          }
         </div>
         <div style={{
 
@@ -53,7 +63,7 @@ export default class Logo extends Component {
         <IconMenu
           iconButtonElement={button} width="120px" >
           <MenuItem primaryText="128 kb/s" onClick={() => {handlePlay();}}/>
-          <MenuItem primaryText="Скачать m3u" />
+          <MenuItem primaryText="Скачать m3u" onClick={() => {window.location = 'live.m3u';}}/>
         </IconMenu>
         }
         { isPlaying &&

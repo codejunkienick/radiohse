@@ -49,13 +49,13 @@ export default class Logo extends Component {
             <IconMenu
               openDirection="bottom-right"
               iconButtonElement={button2}>
-              <MenuItem primaryText="128 kb/s" onClick={() => {handlePlay();}}/>
-              <MenuItem primaryText="Скачать m3u" />
+              <MenuItem primaryText="128 kb/s" onClick={ () => {handlePlay();} }/>
+              <MenuItem primaryText="Скачать m3u" onClick={ () => {window.location = 'live.m3u';} }/>
             </IconMenu>
             }
             {isPlaying &&
               <span onClick={() => {handlePlay();}}>
-              <PauseButton  />
+              <PauseButton />
               </span>
             }
           </div>

@@ -51,10 +51,10 @@ export default class Member extends Component {
             <div className={styles.memberName}>{name}</div>
             <div className={styles.rank}>{rank}</div>
             <div className={styles.socialLinks}>
-              { instagram && <a href={instagram}><i className="icon-instagram-with-circle" /></a> }
-              { facebook && <a href={facebook}><i className="icon-facebook-with-circle" /></a> }
-              { vk && <a href={vk}><i className="icon-vk-with-circle" /></a> }
-              { twitter && <a href={twitter}><i className="icon-twitter-with-circle" /></a> }
+              { instagram && <a className={styles.instagram} href={instagram}><i className="icon-instagram-with-circle" /></a> }
+              { facebook && <a className={styles.facebook} href={facebook}><i className="icon-facebook-with-circle" /></a> }
+              { vk && <a className={styles.vk} href={vk}><i className="icon-vk-with-circle" /></a> }
+              { twitter && <a className={styles.twitter} href={twitter}><i className="icon-twitter-with-circle" /></a> }
             </div>
           </div>
         </Paper>

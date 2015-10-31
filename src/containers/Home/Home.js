@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Scroll from 'react-scroll';
+import Sticky from 'react-sticky';
 import {
   Dialog,
   LeftNav,
 } from 'material-ui/lib/index';
-
-import Sticky from 'react-sticky';
 
 import {
   Logo,
@@ -15,10 +15,26 @@ import {
   ContactForm,
   MobilePlayButton
 } from 'components';
+import * as voteActions from 'redux/modules/vote';
 
+@connect(
+  state => ({
+    currentSong: state.vote.currentSong,
+    loaded: state.vote.loaded,
+    voted: state.vote.voted,
+    voting: state.vote.voting
+  }),
+  voteActions
+)
 export default class Home extends Component {
   static propTypes = {
-    members: PropTypes.array
+    members: PropTypes.array,
+    currentSong: PropTypes.string,
+    voted: PropTypes.bool,
+    voting: PropTypes.bool,
+    load: PropTypes.func,
+    voteSong: PropTypes.func,
+    loaded: PropTypes.bool,
   }
   static defaultProps = {
     members: [
@@ -66,15 +82,17 @@ export default class Home extends Component {
       windowWidth: '',
       headerOffset: '0px',
       playing: false,
-      currentTrack: 'Эфир окончен'
     };
   }
 
   componentDidMount() {
     this.setState({windowWidth: window.innerWidth});
     window.addEventListener('resize', this.handleResize.bind(this));
+
     socket.on('playermeta', (data) => {
-      this.setState({currentTrack: data.StreamTitle});
+      if (!this.props.loaded || this.props.currentSong !== data.StreamTitle) {
+        this.props.load(data.StreamTitle);
+      }
     });
   }
 
@@ -88,7 +106,7 @@ export default class Home extends Component {
 
   handlePlay() {
     const stream = this.refs.stream128;
-    stream.volume = 0.7;
+    stream.volume = 0.6;
     if (!this.state.playing) {
       stream.play();
     } else {
@@ -98,8 +116,8 @@ export default class Home extends Component {
   }
 
   render() {
-    const { members } = this.props;
-    const { headerOffset, windowWidth, currentTrack } = this.state;
+    const { members, currentSong, voteSong, voted, voting } = this.props;
+    const { headerOffset, windowWidth } = this.state;
     const styles = require('./Home.scss');
 
     const standardActions = [
@@ -164,8 +182,11 @@ export default class Home extends Component {
 
             <DesktopPlayer
               dialog={this.refs.aboutSystem}
-              currentTrack={currentTrack}
+              currentSong={currentSong}
               isPlaying={this.state.playing}
+              vote={voteSong}
+              voting={voting}
+              voted={voted}
               handlePlay={this.handlePlay.bind(this)} />
 
           </div>
@@ -187,7 +208,7 @@ export default class Home extends Component {
 
         <MobilePlayer
           dialog={this.refs.aboutSystem}
-          currentTrack={currentTrack} />
+          currentSong={currentSong} />
 
 
         <Scroll.Element name="team" className={styles.members}>
@@ -205,7 +226,8 @@ export default class Home extends Component {
         <Scroll.Element name="about" className={styles.about}>
           <div className="container" style={{textAlign: 'center', maxWidth: '600px'}}>
             <h2>О радио</h2>
-            <p>Consectetur recusandae ad dignissimos odit omnis rem earum saepe soluta magnam id magnam cumque ipsa ut harum tenetur sequi? Ut iste quaerat neque reprehenderit inventore sed quas dolorum nam animi. Ipsum blanditiis blanditiis nemo nisi repellat dolor distinctio, voluptatum numquam est eveniet. Perferendis ab perspiciatis magnam cumque culpa alias atque veritatis non eius. Nihil ab dolor esse aliquid possimus molestias!</p>
+            <p>Радиовышка – первый независимый студенческий информационно-развлекательный радио проект на базе Пермского кампуса Высшей школы экономики. <br />
+Радиовышка была создана многокультурной командой, обладающей различными интересами и музыкальными предпочтениями. Основополагающая идея нашего радио – дарить слушателям хорошее настроение. Наш эфир наполняется только качественным и абсолютно легальным музыкальным контентом, который подкрепляется голосами наших активных и всегда интересных DJs.</p>
           </div>
         </Scroll.Element>
 

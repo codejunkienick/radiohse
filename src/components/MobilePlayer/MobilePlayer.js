@@ -2,10 +2,11 @@ import React, {Component, PropTypes} from 'react';
 import {
   RaisedButton,
 } from 'material-ui/lib/index';
-export default class Logo extends Component {
+
+export default class MobilePlayer extends Component {
   static propTypes = {
     dialog: PropTypes.object,
-    currentTrack: PropTypes.string
+    currentSong: PropTypes.string
   }
   render() {
     const styles = require('./MobilePlayer.scss');
@@ -14,7 +15,7 @@ export default class Logo extends Component {
         <div className="container">
           <h2>Сейчас играет</h2>
           <div className={styles.song}>
-            {this.props.currentTrack}
+            {this.props.currentSong}
           </div>
           <div className={styles.controls}>
             <div className={styles.like}>
