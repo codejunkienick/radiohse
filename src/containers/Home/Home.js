@@ -147,6 +147,8 @@ export default class Home extends Component {
   }
   updateVolume(volume) {
     const stream = this.refs.stream128;
+    const stream64 = this.refs.stream64;
+    stream64.volume = volume;
     stream.volume = volume;
   }
 
