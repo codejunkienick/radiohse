@@ -87,22 +87,31 @@ if (config.apiPort) {
   });
 
   let meta = {};
-  icecast.get('http://137.116.251.106/live', function (res) {
-    // log any "metadata" events that happen 
-    if (res.statusCode === 404) {
-      console.log('OFF AIR')
-      io.sockets.emit('playermeta', false);
-    }
-    res.on('metadata', function (metadata) {
-      meta = icecast.parse(metadata);
-       if (res.statusCode !== 404) {
-         io.sockets.emit('playermeta', meta);
-       }
-    });
-    res.pipe(devnull());
-  });
+  let onair = false;
 
   io.on('connection', (socket) => {
+
+    if(!onair) {
+    
+      icecast.get('http://137.116.251.106/live', function (res) {
+        console.log(res.statusCode);
+        if (res.statusCode === 404) {
+          console.log('OFF AIR')
+          io.sockets.emit('playermeta', false);
+        }
+        else {
+          onair = true;
+          res.on('metadata', function (metadata) {
+            meta = icecast.parse(metadata);
+             if (res.statusCode !== 404) {
+               io.sockets.emit('playermeta', meta);
+             }
+          });
+          res.pipe(devnull());
+        }
+      });
+    
+    }
 
     socket.emit('playermeta', meta);
 

@@ -86,7 +86,7 @@ export default class ContactForm extends Component {
               onClick={this.sendEmail.bind(this)}
               label="Отправить"
               backgroundColor="#0097a7"
-              labelColor="#ffffff"
+              labelColor="#ffffff" 
               className={styles.sendButton}/>
           </div>
 

@@ -93,9 +93,11 @@ export default class Home extends Component {
     window.addEventListener('resize', this.handleResize.bind(this));
 
     socket.on('playermeta', (data) => {
+      console.log(Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle));
+
       if (Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle)) {
         this.props.load(data.StreamTitle);
-      } else {
+      } else if (Object.keys(data).length < 0) {
         this.props.stopStream();
       }
     });
@@ -119,9 +121,13 @@ export default class Home extends Component {
     }
     this.setState({playing: !this.state.playing});
   }
+  updateVolume(volume) {
+    const stream = this.refs.stream128;
+    stream.volume = volume;
+  }
 
   render() {
-    const { members, currentSong, voteSong, voted, voting, streamEnabled} = this.props;
+    const { members, currentSong, voteSong, voted, voting, streamEnabled, updateVolume } = this.props;
     const { headerOffset, windowWidth } = this.state;
     const styles = require('./Home.scss');
 
@@ -186,6 +192,7 @@ export default class Home extends Component {
             <Logo />
 
             <DesktopPlayer
+              updateVolume={this.updateVolume.bind(this)}
               streamEnabled={streamEnabled}
               dialog={this.refs.aboutSystem}
               currentSong={currentSong}

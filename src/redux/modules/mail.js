@@ -3,7 +3,6 @@ const SEND_SUCCESS = 'radiohse/mail/SEND_SUCCESS';
 const SEND_FAIL = 'radiohse/mail/SEND_FAIL';
 
 const initialState = {
-  sent: false
 };
 
 export default function reducer(state = initialState, action = {}) {

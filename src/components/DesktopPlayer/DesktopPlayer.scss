@@ -62,4 +62,35 @@
       line-height: 76px;
     }
   }
+  .volumeControl {
+      width: 150px;
+      height: 32px;
+      padding: 10px;
+      position: absolute;
+      bottom: -45px;
+      left: 50%;
+      right: 50%;
+      margin-left: -78px;
+      box-shadow: 1px 1px 6px #CACACA;
+      border-radius: 3px;
+      animation: fadeIn ease-in 350ms;
+      animation-fill-mode: forwards;
+      animation-duration: 350ms;
+    & > div {
+      margin-top: -5px;  
+    }
+
+    .volumeIcon {
+      height: 24px;
+      width: 20%;
+      float: left;
+    }
+    & > div > div {
+      width: 74%;
+      float: left;
+      margin-top: -21px;
+      margin-left: 5px;
+    }
+  }
 }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
