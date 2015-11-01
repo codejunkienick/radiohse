@@ -73,7 +73,7 @@ export default class Home extends Component {
         vk: 'http://vk.com/v.kropotin'
       },
       {
-        name: 'Екатерина Дегтярёва',
+        name: 'Екатерина Дегтярева',
         rank: 'Редактор',
         avatar: '/photos/kate.jpg',
         vk: 'http://vk.com/lady_gerber'
