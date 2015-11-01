@@ -4,8 +4,8 @@ const isEmpty = value => value === undefined || value === null || value === '';
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'bsod.chebureg@gmail.com',
-        pass: 'Bsodalfa007'
+      user: 'radiohseperm@gmail.com',
+      pass: 'OhJIM$z@@b@#'
     }
 });
 
@@ -19,7 +19,8 @@ export default function sendMail(req) {
 
     const mailOptions = {
       ...mail,
-      to: 'psychedelicespresso@gmail.com'
+      from: '<' + mail.from + '>',
+      to: 'radiohseperm@gmail.com'
     }
 
     transporter.sendMail(mailOptions, function(error, info){

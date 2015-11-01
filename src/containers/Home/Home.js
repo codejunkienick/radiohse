@@ -113,14 +113,34 @@ export default class Home extends Component {
     this.setState({windowWidth: window.innerWidth});
   }
 
-  handlePlay() {
-    const stream = this.refs.stream128;
-    stream.volume = 0.6;
-    if (!this.state.playing) {
-      stream.play();
-    } else {
-      stream.pause();
+  handlePlay(bitrate) {
+
+    const stream128 = this.refs.stream128;
+    const stream64 = this.refs.stream64;
+
+    stream128.volume = 0.6;
+    stream64.volume = 0.6;
+
+
+    if (this.state.playing) {
+      stream128.pause();
+      stream64.pause();
+      this.setState({playing: !this.state.playing});
+      return;
     }
+
+    switch(bitrate) {
+      case 128:
+        stream128.play();
+        break;
+      case 64:
+        stream64.play();
+        break;
+      default:
+        stream128.play();
+        break;
+    }
+
     this.setState({playing: !this.state.playing});
   }
   updateVolume(volume) {
@@ -148,6 +168,10 @@ export default class Home extends Component {
       <div>
         <audio ref="stream128">
           <source src="http://137.116.251.106/live" />
+        </audio>
+
+        <audio ref="stream64">
+          <source src="http://137.116.251.106/live64" />
         </audio>
 
         <Dialog

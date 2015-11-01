@@ -21,6 +21,10 @@ export default class DesktopPlayer extends Component {
     currentSong: PropTypes.string
   }
 
+  constuctor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     // TODO: Do i even need this anymore?
     const injectTapEventPlugin = require('react-tap-event-plugin');
@@ -82,12 +86,15 @@ export default class DesktopPlayer extends Component {
         { !isPlaying &&
         <IconMenu
           iconButtonElement={button} width="120px" >
-          <MenuItem primaryText="128 kb/s" onClick={() => {handlePlay();}}/>
+          <MenuItem primaryText="128 kb/s" onClick={() => {handlePlay(128);}}/>
+          <MenuItem primaryText="64 kb/s" onClick={() => {handlePlay(64);}}/>
           <MenuItem primaryText="Скачать m3u" onClick={() => {window.location = 'live.m3u';}}/>
         </IconMenu>
         }
         { isPlaying &&
-          <div onClick={() => handlePlay()} className={styles.play}>
+          <div
+            onClick={() => handlePlay()}
+            className={styles.play}>
             <FloatingActionButton backgroundColor="#0097a7" style={{width: '76px', height: '76px'}}>
               <span style={{width: '76px', height: '76px', lineHeight: '76px'}}>
                 <svg style={{width: '38px', marginTop: '19px'}} viewBox="0 0 24 24">
