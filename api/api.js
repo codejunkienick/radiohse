@@ -94,7 +94,7 @@ if (config.apiPort) {
     if(!onair) {
     
       icecast.get('http://137.116.251.106/live', function (res) {
-          console.log("STREAM STATUS" + res.statusCode);
+          console.log("STREAM STATUS: " + res.statusCode);
 
           if (res.statusCode !== 200) {
             onair = false;

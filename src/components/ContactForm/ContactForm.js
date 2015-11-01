@@ -36,9 +36,10 @@ export default class ContactForm extends Component {
     };
   }
   sendEmail() {
-    const { send } = this.props;
     const { titleInput, emailInput, messageInput } = this.state;
-    let emailError, messageError, titleError;
+    let emailError;
+    let messageError;
+    let titleError;
     // TODO: Validation
     titleError = validation.required(titleInput);
     messageError = validation.required(messageInput);
@@ -49,7 +50,7 @@ export default class ContactForm extends Component {
         messageError,
         titleError
       });
-      return; 
+      return;
     }
     const mail = {
       from: emailInput,
@@ -82,7 +83,7 @@ export default class ContactForm extends Component {
             <span>Спасибо за ваше сообщение! Мы вскоре свяжемся с вами</span>
           }
           {sending &&
-            <LinearProgress mode="indeterminate"  />
+            <LinearProgress mode="indeterminate" />
           }
           { error &&
             <span>Извините, кажется произошла ошибка, попробуйте повторить позднее или обратиться к нам в Вконтакте</span>
@@ -139,7 +140,7 @@ export default class ContactForm extends Component {
               onClick={this.sendEmail.bind(this)}
               label="Отправить"
               backgroundColor="#0097a7"
-              labelColor="#ffffff" 
+              labelColor="#ffffff"
               className={styles.sendButton}/>
           </div>
 

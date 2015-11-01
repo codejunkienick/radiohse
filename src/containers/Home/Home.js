@@ -44,37 +44,39 @@ export default class Home extends Component {
       {
         name: 'Данил Губайдулин',
         rank: 'Руководитель',
-        avatar: '',
+        avatar: '/photos/danil.jpg',
         vk: 'http://vk.com/microsoft_dude'
       },
       {
         name: 'Никита Потеряев',
         rank: 'Разработчик',
-        avatar: '',
+        avatar: '/photos/nick.jpg',
         vk: 'http://vk.com/codejunkienick',
-        twitter: 'http://twitter.com/codejunkienick'
       },
       {
         name: 'Игорь Старостюк',
         rank: 'DJ',
-        avatar: '',
+        avatar: '/photos/igor.jpg',
         vk: 'http://vk.com/hartss'
       },
       {
         name: 'Дарья Сапко',
         rank: 'DJ',
-        avatar: '',
+        avatar: '/photos/dasha.jpg',
+        instagram: 'https://instagram.com/daryadari/',
+        vk: 'http://vk.com/daryadari'
       },
       {
         name: 'Вадим Кропотин',
         rank: 'Редактор',
-        avatar: '',
+        avatar: '/photos/vadim.jpg',
         vk: 'http://vk.com/v.kropotin'
       },
       {
         name: 'Екатерина Дегтярёва',
         rank: 'Редактор',
-        avatar: '',
+        avatar: '/photos/kate.jpg',
+        vk: 'http://vk.com/lady_gerber'
       },
     ]
   }
@@ -129,7 +131,7 @@ export default class Home extends Component {
       return;
     }
 
-    switch(bitrate) {
+    switch (bitrate) {
       case 128:
         stream128.play();
         break;
@@ -202,8 +204,7 @@ export default class Home extends Component {
                 else this.setState({headerOffset: '0px'});
               }}>
                 <div className={styles.social}>
-                  <a href=""><i className="icon-facebook-with-circle" /></a>
-                  <a href=""><i className="icon-twitter-with-circle" /></a>
+                  <a href="https://instagram.com/hseradio/"><i className="icon-instagram-with-circle" /></a>
                   <a href="http://vk.com/hse_fm"><i className="icon-vk-with-circle" /></a>
                 </div>
                 <div className={styles.nav}>
@@ -240,9 +241,8 @@ export default class Home extends Component {
         <div className={styles.socialMobile}>
           <div className="container">
             <h2>Мы в соцсетях</h2>
-            <a className={styles.facebook} href=""><i className="icon-facebook-with-circle" /></a>
-            <a className={styles.twitter} href=""><i className="icon-twitter-with-circle" /></a>
-            <a className={styles.vk} href=""><i className="icon-vk-with-circle" /></a>
+            <a className={styles.instagram} href="https://instagram.com/hseradio/"><i className="icon-instagram-with-circle" /></a>
+            <a className={styles.vk} href="http://vk.com/hse_fm"><i className="icon-vk-with-circle" /></a>
           </div>
         </div>
 
@@ -270,6 +270,7 @@ export default class Home extends Component {
             <p>
 Радиовышка – первый независимый студенческий информационно-развлекательный радио проект на базе Пермского кампуса Высшей школы экономики.
 Над проектом работает молодая команда, члены которой имеют общие интересы и различные музыкальные предпочтения. Основополагающая идея радио – дарить слушателям хорошее настроение. Эфир Радиовышки наполняется качественным и легальным музыкальным контентом, который поддерживается голосами активных и всегда интересных DJs.
+Трансляция радио была запущена 21 октября 2015 года и с этого времени работает в режиме non-stop в формате 24/7.
             </p>
           </div>
         </Scroll.Element>

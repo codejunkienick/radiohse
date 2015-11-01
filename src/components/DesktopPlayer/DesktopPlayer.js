@@ -21,14 +21,14 @@ export default class DesktopPlayer extends Component {
     currentSong: PropTypes.string
   }
 
-  constuctor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     // TODO: Do i even need this anymore?
     const injectTapEventPlugin = require('react-tap-event-plugin');
     injectTapEventPlugin(); // hack for material-ui, until material-ui 1.0
+  }
+
+  constuctor(props) {
+    super(props);
   }
 
   render() {

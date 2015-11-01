@@ -44,7 +44,7 @@ export default class Member extends Component {
           zDepth={depth}
           className={paperClasses}>
           <div className={styles.avatar}>
-            { avatar && <img href={avatar} alt={name}/> }
+            { avatar && <img src={avatar} alt={name}/> }
             { !avatar && <div className={styles.avatarDemo} /> }
           </div>
           <div className={styles.credentials}>

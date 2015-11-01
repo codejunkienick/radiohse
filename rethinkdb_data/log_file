@@ -77,3 +77,17 @@
 2015-11-01T09:53:10.334695951 4.611976s info: Table 259118b0-65bc-469b-9d0f-35ddeefb77e8: This server is Raft leader for term 2. Latest log index is 3.
 2015-11-01T09:53:11.035550247 5.312831s info: Table 7e9614e3-4492-4d6b-947f-8f8abf0c8f3f: Starting a new Raft election for term 5.
 2015-11-01T09:53:11.226031865 5.503312s info: Table 7e9614e3-4492-4d6b-947f-8f8abf0c8f3f: This server is Raft leader for term 5. Latest log index is 11.
+2015-11-01T19:08:59.892743566 0.270811s notice: Running rethinkdb 2.1.5+2~0trusty (GCC 4.8.2)...
+2015-11-01T19:08:59.912627844 0.290698s notice: Running on Linux 3.13.0-24-generic x86_64
+2015-11-01T19:08:59.912713727 0.290781s notice: Loading data from directory /home/espresso/work/radiohse/rethinkdb_data
+2015-11-01T19:09:00.032534563 0.410603s info: Automatically using cache size of 2898 MB
+2015-11-01T19:09:00.033161660 0.411229s notice: Listening for intracluster connections on port 29015
+2015-11-01T19:09:00.167696704 0.545764s notice: Listening for client driver connections on port 28015
+2015-11-01T19:09:00.167831958 0.545899s notice: Listening for administrative HTTP connections on port 8080
+2015-11-01T19:09:00.167833231 0.545900s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2015-11-01T19:09:00.167834258 0.545901s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-11-01T19:09:00.167841311 0.545908s notice: Server ready, "espresso_pc_2go" 3e06253b-465c-4cb2-b25c-e1bd5d124cad
+2015-11-01T19:09:01.567813838 1.945881s info: Table 259118b0-65bc-469b-9d0f-35ddeefb77e8: Starting a new Raft election for term 3.
+2015-11-01T19:09:01.577853544 1.955921s info: Table 259118b0-65bc-469b-9d0f-35ddeefb77e8: This server is Raft leader for term 3. Latest log index is 6.
+2015-11-01T19:09:01.850502019 2.228569s info: Table 7e9614e3-4492-4d6b-947f-8f8abf0c8f3f: Starting a new Raft election for term 6.
+2015-11-01T19:09:01.856955749 2.235023s info: Table 7e9614e3-4492-4d6b-947f-8f8abf0c8f3f: This server is Raft leader for term 6. Latest log index is 15.
