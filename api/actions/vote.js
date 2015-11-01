@@ -3,7 +3,6 @@ import r from '../db';
 
 export default function vote(req) {
   return new Promise((resolve, reject) => {
-    console.log(req.body);
     if (isEmpty(req.body.songname) || isEmpty(req.body.vote)) {
       reject("empty fields");
     }
