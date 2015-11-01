@@ -94,21 +94,23 @@ if (config.apiPort) {
     if(!onair) {
     
       icecast.get('http://137.116.251.106/live', function (res) {
-        console.log(res.statusCode);
-        if (res.statusCode === 404) {
-          console.log('OFF AIR')
-          io.sockets.emit('playermeta', false);
-        }
-        else {
-          onair = true;
           res.on('metadata', function (metadata) {
             meta = icecast.parse(metadata);
-             if (res.statusCode !== 404) {
-               io.sockets.emit('playermeta', meta);
-             }
+
+            if (res.statusCode !== 200) {
+              onair = false;
+              console.log('OFF AIR')
+              io.sockets.emit('playermeta', false);
+            }
+            if (Object.keys(meta).length > 0 && res.statusCode === 200) {
+              onair = true;
+              io.sockets.emit('playermeta', meta);
+            } else {
+              io.sockets.emit('playermeta', meta);
+              onair = false;
+            }
           });
           res.pipe(devnull());
-        }
       });
     
     }

@@ -93,8 +93,6 @@ export default class Home extends Component {
     window.addEventListener('resize', this.handleResize.bind(this));
 
     socket.on('playermeta', (data) => {
-      console.log(Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle));
-
       if (Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle)) {
         this.props.load(data.StreamTitle);
       } else if (Object.keys(data).length < 0) {
