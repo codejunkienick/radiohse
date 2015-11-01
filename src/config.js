@@ -30,7 +30,7 @@ const environment = {
   },
   production: {
     isProduction: true,
-    port: 3000,
+    port: 80,
     apiPort: 3030,
     app: {
       title: 'РАДИОВЫШКА',
