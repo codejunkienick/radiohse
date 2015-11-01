@@ -38,7 +38,7 @@
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
         "PORT": 80,
-        "APIPORT": 3333
+        "APIPORT": 3030
       }
     },
     "start-prod-api": {
@@ -46,7 +46,7 @@
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "production",
-        "APIPORT": 3333
+        "APIPORT": 3030
       }
     },
     "start-dev": {
@@ -109,7 +109,6 @@
     "react-tappable": "^0.7.1",
     "redux": "3.0.4",
     "redux-form": "3.0.0-beta-1",
-    "rethinkdb-init": "0.0.5",
     "rethinkdbdash": "^2.1.13",
     "serialize-javascript": "1.1.2",
     "serve-favicon": "2.3.0",
