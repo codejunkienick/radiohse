@@ -94,7 +94,11 @@ export default class Home extends Component {
 
     socket.on('playermeta', (data) => {
       if (Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle)) {
-        this.props.load(data.StreamTitle);
+        if (data.StreamTitle !== '') {
+          this.props.load(data.StreamTitle);
+        } else {
+          this.props.load('ON AIR');
+        }
       } else if (Object.keys(data).length < 0) {
         this.props.stopStream();
       }
@@ -125,7 +129,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { members, currentSong, voteSong, voted, voting, streamEnabled, updateVolume } = this.props;
+    const { members, currentSong, voteSong, voted, voting, streamEnabled } = this.props;
     const { headerOffset, windowWidth } = this.state;
     const styles = require('./Home.scss');
 

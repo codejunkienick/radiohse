@@ -94,12 +94,20 @@ if (config.apiPort) {
     if(!onair) {
     
       icecast.get('http://137.116.251.106/live', function (res) {
+          console.log("STREAM STATUS" + res.statusCode);
+
+          if (res.statusCode !== 200) {
+            onair = false;
+            console.log("STREAM STATUS" + res.statusCode);
+            io.sockets.emit('playermeta', false);
+          }
+
           res.on('metadata', function (metadata) {
             meta = icecast.parse(metadata);
 
             if (res.statusCode !== 200) {
               onair = false;
-              console.log('OFF AIR')
+              console.log("STREAM STATUS" + res.statusCode);
               io.sockets.emit('playermeta', false);
             }
             if (Object.keys(meta).length > 0 && res.statusCode === 200) {
@@ -110,6 +118,7 @@ if (config.apiPort) {
               onair = false;
             }
           });
+
           res.pipe(devnull());
       });
     

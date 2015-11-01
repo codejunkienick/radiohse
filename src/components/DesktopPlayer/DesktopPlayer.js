@@ -16,7 +16,6 @@ export default class DesktopPlayer extends Component {
     vote: PropTypes.func,
     voting: PropTypes.bool,
     voted: PropTypes.bool,
-    volume: PropTypes.number,
     updateVolume: PropTypes.func,
     streamEnabled: PropTypes.bool,
     currentSong: PropTypes.string
@@ -37,7 +36,7 @@ export default class DesktopPlayer extends Component {
       </div>
     );
 
-    const { isPlaying, handlePlay, currentSong, dialog, vote, voted, streamEnabled, volume, updateVolume } = this.props;
+    const { isPlaying, handlePlay, currentSong, dialog, vote, voted, streamEnabled, updateVolume } = this.props;
 
     return (
       <div className={styles.player}>
