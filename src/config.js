@@ -2,7 +2,7 @@ require('babel-core/polyfill');
 
 const environment = {
   development: {
-    isProduction: false
+    isProduction: false,
     port: 3000,
     apiPort: 3030,
     app: {
@@ -29,7 +29,7 @@ const environment = {
     }
   },
   production: {
-    isProduction: true
+    isProduction: true,
     port: 3000,
     apiPort: 3030,
     app: {
