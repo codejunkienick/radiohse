@@ -36,7 +36,7 @@ export default class Html extends Component {
 
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-          <link rel="image_src" href="/logo.jpg" />
+          <link rel="image_src" href="http://radiohse.com/logo.jpg" />
 
           <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
 

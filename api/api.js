@@ -89,9 +89,15 @@ if (config.apiPort) {
   let meta = {};
   icecast.get('http://137.116.251.106/live', function (res) {
     // log any "metadata" events that happen 
+    if (res.statusCode === 404) {
+      console.log('OFF AIR')
+      io.sockets.emit('playermeta', false);
+    }
     res.on('metadata', function (metadata) {
-       meta = icecast.parse(metadata);
-       io.sockets.emit('playermeta', meta);
+      meta = icecast.parse(metadata);
+       if (res.statusCode !== 404) {
+         io.sockets.emit('playermeta', meta);
+       }
     });
     res.pipe(devnull());
   });

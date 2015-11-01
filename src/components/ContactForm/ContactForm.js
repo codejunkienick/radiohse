@@ -1,11 +1,24 @@
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { send } from 'redux/modules/mail';
 import Scroll from 'react-scroll';
 import {
   TextField,
   RaisedButton,
 } from 'material-ui/lib/index';
-export default class Logo extends Component {
+@connect(
+  state => ({
+    sent: state.mail.sent,
+    sending: state.mail.sending,
+    error: state.mail.error
+  }), {send}
+)
+export default class ContactForm extends Component {
   static propTypes = {
+    send: PropTypes.func,
+    sent: PropTypes.bool,
+    sending: PropTypes.bool,
+    error: PropTypes.object
   }
   constructor(props) {
     super(props);
@@ -14,6 +27,17 @@ export default class Logo extends Component {
       emailInput: '',
       messageInput: '',
     };
+  }
+  sendEmail() {
+    const { send } = this.props;
+    const { titleInput, emailInput, messageInput } = this.state;
+    // TODO: Validation
+    const mail = {
+      from: emailInput,
+      text: messageInput,
+      subject: titleInput
+    };
+    send(mail);
   }
   render() {
     const styles = require('./ContactForm.scss');
@@ -58,7 +82,12 @@ export default class Logo extends Component {
           </div>
 
           <div className={styles.sendRow}>
-            <RaisedButton label="Отправить" backgroundColor="#0097a7" labelColor="#ffffff" className={styles.sendButton}/>
+            <RaisedButton
+              onClick={this.sendEmail.bind(this)}
+              label="Отправить"
+              backgroundColor="#0097a7"
+              labelColor="#ffffff"
+              className={styles.sendButton}/>
           </div>
 
         </div>

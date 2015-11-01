@@ -1,10 +1,12 @@
 const LOAD = 'radiohse/vote/LOAD';
+const STOP = 'radiohse/vote/STOP';
 const VOTE = 'radiohse/vote/VOTE';
 const VOTE_SUCCESS = 'radiohse/vote/VOTE_SUCCESS';
 const VOTE_FAIL = 'radiohse/vote/VOTE_FAIL';
 
 const initialState = {
-  loaded: false
+  loaded: false,
+  streamEnabled: false,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -14,7 +16,14 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loaded: true,
         currentSong: action.songname,
-        voted: false
+        voted: false,
+        streamEnabled: true,
+      };
+    case STOP:
+      return {
+        ...state,
+        currentSong: action.songname,
+        streamEnabled: false,
       };
     case VOTE:
       return {
@@ -59,5 +68,12 @@ export function voteSong(songname, vote) {
         vote: vote
       }
     })
+  };
+}
+
+export function stopStream() {
+  return {
+    type: STOP,
+    songname: 'Эфир окончен'
   };
 }

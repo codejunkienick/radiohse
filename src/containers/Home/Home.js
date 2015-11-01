@@ -22,7 +22,8 @@ import * as voteActions from 'redux/modules/vote';
     currentSong: state.vote.currentSong,
     loaded: state.vote.loaded,
     voted: state.vote.voted,
-    voting: state.vote.voting
+    voting: state.vote.voting,
+    streamEnabled: state.vote.streamEnabled,
   }),
   voteActions
 )
@@ -34,7 +35,9 @@ export default class Home extends Component {
     voting: PropTypes.bool,
     load: PropTypes.func,
     voteSong: PropTypes.func,
+    stopStream: PropTypes.func,
     loaded: PropTypes.bool,
+    streamEnabled: PropTypes.bool,
   }
   static defaultProps = {
     members: [
@@ -90,8 +93,10 @@ export default class Home extends Component {
     window.addEventListener('resize', this.handleResize.bind(this));
 
     socket.on('playermeta', (data) => {
-      if (!this.props.loaded || this.props.currentSong !== data.StreamTitle) {
+      if (Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle)) {
         this.props.load(data.StreamTitle);
+      } else {
+        this.props.stopStream();
       }
     });
   }
@@ -116,7 +121,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { members, currentSong, voteSong, voted, voting } = this.props;
+    const { members, currentSong, voteSong, voted, voting, streamEnabled} = this.props;
     const { headerOffset, windowWidth } = this.state;
     const styles = require('./Home.scss');
 
@@ -167,7 +172,7 @@ export default class Home extends Component {
                 <div className={styles.social}>
                   <a href=""><i className="icon-facebook-with-circle" /></a>
                   <a href=""><i className="icon-twitter-with-circle" /></a>
-                  <a href=""><i className="icon-vk-with-circle" /></a>
+                  <a href="http://vk.com/hse_fm"><i className="icon-vk-with-circle" /></a>
                 </div>
                 <div className={styles.nav}>
                   <Scroll.Link to="header" spy smooth duration={500}>Главная</Scroll.Link>
@@ -181,6 +186,7 @@ export default class Home extends Component {
             <Logo />
 
             <DesktopPlayer
+              streamEnabled={streamEnabled}
               dialog={this.refs.aboutSystem}
               currentSong={currentSong}
               isPlaying={this.state.playing}
@@ -193,6 +199,7 @@ export default class Home extends Component {
         </Scroll.Element>
 
         <MobilePlayButton
+          streamEnabled={streamEnabled}
           isPlaying={this.state.playing}
           handlePlay={this.handlePlay.bind(this)} />
 
@@ -207,6 +214,7 @@ export default class Home extends Component {
         </div>
 
         <MobilePlayer
+          streamEnabled={streamEnabled}
           dialog={this.refs.aboutSystem}
           currentSong={currentSong} />
 
@@ -216,7 +224,7 @@ export default class Home extends Component {
             <h2>Наша команда</h2>
             <ul className={styles.memberGrid + ' large-block-grid-6 medium-block-grid-3 small-block-grid-1'}>
               {members.map((member) => {
-                return <li><Member windowWidth={windowWidth} {...member} /></li>;
+                return <li><Member key={member.id} windowWidth={windowWidth} {...member} /></li>;
               })
               }
             </ul>
@@ -226,8 +234,10 @@ export default class Home extends Component {
         <Scroll.Element name="about" className={styles.about}>
           <div className="container" style={{textAlign: 'center', maxWidth: '600px'}}>
             <h2>О радио</h2>
-            <p>Радиовышка – первый независимый студенческий информационно-развлекательный радио проект на базе Пермского кампуса Высшей школы экономики. <br />
-Радиовышка была создана многокультурной командой, обладающей различными интересами и музыкальными предпочтениями. Основополагающая идея нашего радио – дарить слушателям хорошее настроение. Наш эфир наполняется только качественным и абсолютно легальным музыкальным контентом, который подкрепляется голосами наших активных и всегда интересных DJs.</p>
+            <p>
+Радиовышка – первый независимый студенческий информационно-развлекательный радио проект на базе Пермского кампуса Высшей школы экономики.
+Над проектом работает молодая команда, члены которой имеют общие интересы и различные музыкальные предпочтения. Основополагающая идея радио – дарить слушателям хорошее настроение. Эфир Радиовышки наполняется качественным и легальным музыкальным контентом, который поддерживается голосами активных и всегда интересных DJs.
+            </p>
           </div>
         </Scroll.Element>
 

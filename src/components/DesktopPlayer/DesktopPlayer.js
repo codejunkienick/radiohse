@@ -15,12 +15,16 @@ export default class DesktopPlayer extends Component {
     vote: PropTypes.func,
     voting: PropTypes.bool,
     voted: PropTypes.bool,
+    streamEnabled: PropTypes.bool,
     currentSong: PropTypes.string
   }
+
   componentDidMount() {
+    // TODO: Do i even need this anymore?
     const injectTapEventPlugin = require('react-tap-event-plugin');
     injectTapEventPlugin(); // hack for material-ui, until material-ui 1.0
   }
+
   render() {
     const styles = require('./DesktopPlayer.scss');
 
@@ -30,25 +34,39 @@ export default class DesktopPlayer extends Component {
       </div>
     );
 
-    const { isPlaying, handlePlay, currentSong, dialog, vote, voted } = this.props;
+    const { isPlaying, handlePlay, currentSong, dialog, vote, voted, streamEnabled } = this.props;
 
     return (
       <div className={styles.player}>
         <div className={styles.song}>
           {currentSong}
         </div>
-        <div className={styles.controls}>
-          {!voted &&
-            <div>
-              <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.like} onClick={() => {vote(currentSong, 'like');}}>Да</FlatButton>
-              <a onClick={() => dialog.show()} className={styles.controlLabel}>Нравится песня?</a>
-              <FlatButton rippleColor="#ffffff" backgroundColor="transparent" className={styles.dislike} onClick={() => vote(currentSong, 'dislike')}>Нет</FlatButton>
-            </div>
-          }
-          {voted &&
-            <div style={{color: 'rgba(255,255,255,0.8)', textAlign: 'center', fontSize: '20px'}}>Cпасибо за ваш голос!</div>
-          }
-        </div>
+        {streamEnabled &&
+          <div className={styles.controls}>
+            {!voted &&
+              <div>
+                <FlatButton
+                  rippleColor="#ffffff"
+                  backgroundColor="transparent"
+                  className={styles.like}
+                  onClick={() => {vote(currentSong, 'like');}}>
+                    Да
+                </FlatButton>
+                <a onClick={() => dialog.show()} className={styles.controlLabel}>Нравится песня?</a>
+                <FlatButton
+                  rippleColor="#ffffff"
+                  backgroundColor="transparent"
+                  className={styles.dislike}
+                  onClick={() => vote(currentSong, 'dislike')}>
+                    Нет
+                </FlatButton>
+              </div>
+            }
+            {voted &&
+              <div style={{color: 'rgba(255,255,255,0.8)', textAlign: 'center', fontSize: '20px'}}>Cпасибо за ваш голос!</div>
+            }
+          </div>
+        }
         <div style={{
 
           width: '76px',

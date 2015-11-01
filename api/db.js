@@ -1,7 +1,6 @@
 var r = require("rethinkdbdash")({
   db: 'radiohse',
 });
-require('rethinkdb-init')(r);
 
 export function initDatabase() {
   r.tableList().run().then((result) => {

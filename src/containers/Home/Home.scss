@@ -28,14 +28,16 @@ p {
 .header {
   width: 100%;
   background-color: #0277BD;
+  padding-top: 32px;
   @media only screen and (min-width: 64.063em) { 
+    padding-top: 0;
     background: url('./header_bg.jpg') no-repeat center center;
     background-size: cover;
   }
 }
 
 .burger {
-
+  display: none; //TODO: Fix burger menu, or create other pages
   @media only screen and (min-width: 64.063em) { 
     display: none;
   }
