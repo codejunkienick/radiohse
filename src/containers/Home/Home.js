@@ -57,7 +57,8 @@ export default class Home extends Component {
         name: 'Игорь Старостюк',
         rank: 'DJ',
         avatar: '/photos/igor.jpg',
-        vk: 'http://vk.com/hartss'
+        vk: 'http://vk.com/hartss',
+        twitter: 'https://twitter.com/starostyuk_igor'
       },
       {
         name: 'Дарья Сапко',
@@ -182,7 +183,8 @@ export default class Home extends Component {
           title="О нашей клевой системе"
           actions={standardActions}
           ref="aboutSystem">
-          Adipisicing commodi velit sint fugit dolores quas. Natus dolores cumque ab illo accusantium. At exercitationem architecto sequi atque quam nemo numquam maiores. Voluptas consequuntur natus ea alias officia eveniet, exercitationem.
+Понравился трек? Жми «ДА» и у него появится шанс попасть в наш специальный чарт, в котором мы прокрутим самые популярные треки прошедшего месяца. Кроме того, песни, набравшие большее количество голосов будут обсуждаться в нашей специальной программе нашими любимыми DJs!
+Может быть трек, выбранный именно тобой, попадет в список лучших уже сейчас!
         </Dialog>
 
         <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
