@@ -7,6 +7,7 @@ const VOTE_FAIL = 'radiohse/vote/VOTE_FAIL';
 const initialState = {
   loaded: false,
   streamEnabled: false,
+  currentSong: 'Эфир окончен'
 };
 
 export default function reducer(state = initialState, action = {}) {

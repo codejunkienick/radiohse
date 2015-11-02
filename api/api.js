@@ -11,6 +11,7 @@ import SocketIo from 'socket.io';
 import icecast from 'icecast';
 import devnull from 'dev-null';
 import { initDatabase } from './db';
+import schedule from 'node-schedule';
 
 initDatabase();
 
@@ -71,10 +72,57 @@ app.use((req, res) => {
   }
 });
 
-
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
+
+
+let onair = false;
+var cron = schedule.scheduleJob('*/1 * * * *', function(){
+
+    if(!onair) {
+    
+      let req = http.get('http://137.116.251.106/live', function (res) {
+
+        console.log("STREAM STATUS: " + res.statusCode);
+
+        res.on('metadata', function (metadata) {
+          meta = icecast.parse(metadata);
+          if (res.statusCode !== 200) {
+            onair = false;
+            console.log("OFF AIR");
+            io.sockets.emit('playermeta', false);
+          }
+          if (Object.keys(meta).length > 0 && res.statusCode === 200) {
+            onair = true;
+            io.sockets.emit('playermeta', meta);
+          } else {
+            io.sockets.emit('playermeta', meta);
+            onair = false;
+          }
+        });
+
+        res.on('response', function(response) {
+
+          console.log('res'); 
+
+          if (res.statusCode === 200) {
+            res.pipe(devnull());
+          }
+
+        });
+
+        res.on('error', function(err) {
+            onair = false;
+        });
+
+      }).on('error', function(err) {
+        console.log("STREAM SERVER ERROR: " + err);
+        onair = false;
+      });
+
+    }
+});
 
 
 if (config.apiPort) {
@@ -87,44 +135,9 @@ if (config.apiPort) {
   });
 
   let meta = {};
-  let onair = false;
 
   io.on('connection', (socket) => {
 
-    if(!onair) {
-    
-      icecast.get('http://137.116.251.106/live', function (res) {
-          console.log("STREAM STATUS: " + res.statusCode);
-
-          if (res.statusCode !== 200) {
-            onair = false;
-            console.log("STREAM STATUS" + res.statusCode);
-            io.sockets.emit('playermeta', false);
-          }
-
-          res.on('metadata', function (metadata) {
-            meta = icecast.parse(metadata);
-
-            if (res.statusCode !== 200) {
-              onair = false;
-              console.log("STREAM STATUS" + res.statusCode);
-              io.sockets.emit('playermeta', false);
-            }
-            if (Object.keys(meta).length > 0 && res.statusCode === 200) {
-              onair = true;
-              io.sockets.emit('playermeta', meta);
-            } else {
-              io.sockets.emit('playermeta', meta);
-              onair = false;
-            }
-          });
-
-          res.pipe(devnull());
-      });
-    
-    }
-
-    socket.emit('playermeta', meta);
 
     socket.on('history', () => {
       for (let index = 0; index < bufferSize; index++) {
