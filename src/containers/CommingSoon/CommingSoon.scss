@@ -1,0 +1,86 @@
+$vk: #45668e;
+$facebook: #3b5998;
+$instagram: #3f729b;
+$twitter: #55acee;
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-family: 'Roboto Condensed';
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-top: 0;
+  line-height:1;
+  color: #455a54;
+  @media only screen and (min-width: 64.063em) { 
+    text-transform: uppercase;
+    margin-bottom: 42px;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+}
+p {
+  font-family: 'Roboto';
+  font-size: 16px;
+}
+
+body {
+
+  background: url('./test.jpg') no-repeat center center;
+  background-size: cover;
+  background-color: #0277BD;
+}
+
+
+.header {
+  margin-top: 50px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+
+  @media only screen and (min-width: 64.063em) { 
+
+  }
+}
+
+.burger {
+  display: none; //TODO: Fix burger menu, or create other pages
+  @media only screen and (min-width: 64.063em) { 
+    display: none;
+  }
+}
+
+.logo {
+  height: 400px;
+  padding: 100px;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 5px;
+  display: flex;
+  font-family: 'Roboto';
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #ecf6fc;
+  text-align: center;
+  font-size: 28px;
+
+  @media only screen and (min-width: 64.063em) { 
+    font-size: 40px;
+
+    img {
+      margin-bottom: 30px;
+    }
+  }
+
+  img {
+    max-height: 120px;
+    margin-bottom: 10px;
+  }
+}
+.commingSoon {
+  font-size: 32px;
+  text-align: center;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Roboto Condensed';
+}
