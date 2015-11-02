@@ -8,9 +8,10 @@ import {
   } from 'containers';
 
 export default () => {
-  const comminngSoon = true;
 
-  const Index = (true) ? CommingSoon : Home;
+    let Index = CommingSoon;
+
+
   /**
    * Please keep routes in alphabetical order
    */
@@ -20,7 +21,6 @@ export default () => {
       <IndexRoute component={Index}/>
 
       <Route path="*" component={NotFound} status={404} />
-
       
     </Route>
   );

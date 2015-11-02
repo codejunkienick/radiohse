@@ -46,7 +46,6 @@ export default class ComingSoon extends Component {
                 display: 'flex',
                 flexDirection: 'column',
                 alignContent: 'center',
-                
               }}>
 
               <img src={require('./logo.svg')} alt="" />

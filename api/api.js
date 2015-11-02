@@ -76,6 +76,7 @@ const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
 
+io.sockets.emit('releaseSite', false);
 
 let onair = false;
 var cron = schedule.scheduleJob('*/1 * * * *', function(){
