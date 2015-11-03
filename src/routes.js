@@ -4,7 +4,6 @@ import {
     App,
     Home,
     NotFound,
-    CommingSoon
   } from 'containers';
 
 export default () => {
