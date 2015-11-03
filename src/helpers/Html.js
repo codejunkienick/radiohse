@@ -18,6 +18,23 @@ export default class Html extends Component {
     component: PropTypes.node,
     store: PropTypes.object
   }
+  ym() {
+      return (
+        "<script src='https://mc.yandex.ru/metrika/watch.js' type='text/javascript'></script>\
+        <script type='text/javascript'>\
+              try {\
+                    var yaCounter33334258 = new Ya.Metrika({\
+                    id:33334258,\
+                    clickmap:true,\
+                    trackLinks:true,\
+                    accurateTrackBounce:true,\
+                    webvisor:true,\
+                    trackHash:true\
+                    });\
+              } catch(e) { }\
+        </script>"
+      );
+    }
 
   render() {
     const {assets, component, store} = this.props;
@@ -54,6 +71,7 @@ export default class Html extends Component {
           <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
           <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
           <script src={assets.javascript.main} charSet="UTF-8"/>
+          <div dangerouslySetInnerHTML={{__html: this.ym()}}/>
         </body>
       </html>
     );
