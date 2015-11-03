@@ -45,10 +45,10 @@ export default class ComingSoon extends Component {
       let minutes = Math.floor( (t/1000/60) % 60 );
       let hours = Math.floor( (t/(1000*60*60)) % 24 );
       if (minutes < 10) {
-        minutes = minutes + '0';
+        minutes = '0' + minutes;
       }
       if (seconds < 10) {
-        seconds = seconds + '0';
+        seconds = '0' + seconds;
       }
       return {
         'total': t,
