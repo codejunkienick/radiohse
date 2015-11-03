@@ -81,14 +81,15 @@ io.sockets.emit('releaseSite', false);
 let onair = false;
 var cron = schedule.scheduleJob('*/1 * * * *', function(){
 
+
     if(!onair) {
     
-      let req = http.get('http://137.116.251.106/live', function (res) {
+      let req = icecast.get('http://40.127.181.21/live', function (res) {
 
         console.log("STREAM STATUS: " + res.statusCode);
 
         res.on('metadata', function (metadata) {
-          meta = icecast.parse(metadata);
+          let meta = icecast.parse(metadata);
           if (res.statusCode !== 200) {
             onair = false;
             console.log("OFF AIR");
@@ -103,15 +104,10 @@ var cron = schedule.scheduleJob('*/1 * * * *', function(){
           }
         });
 
-        res.on('response', function(response) {
-
-          console.log('res'); 
-
-          if (res.statusCode === 200) {
-            res.pipe(devnull());
-          }
-
-        });
+        if (res.statusCode === 200) {
+          res.pipe(devnull());
+          onair = true;
+        }
 
         res.on('error', function(err) {
             onair = false;

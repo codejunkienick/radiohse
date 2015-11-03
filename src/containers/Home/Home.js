@@ -71,7 +71,9 @@ export default class Home extends Component {
         name: 'Вадим Кропотин',
         rank: 'Редактор',
         avatar: '/photos/vadim.jpg',
-        vk: 'http://vk.com/v.kropotin'
+        vk: 'http://vk.com/v.kropotin',
+        instagram: 'https://instagram.com/vadim_kropotin/',
+        facebook: 'https://instagram.com/vadim_kropotin/'
       },
       {
         name: 'Екатерина Дегтерева',
@@ -96,6 +98,7 @@ export default class Home extends Component {
     window.addEventListener('resize', this.handleResize.bind(this));
 
     socket.on('playermeta', (data) => {
+      console.log(data);
       if (Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle)) {
         if (data.StreamTitle !== '') {
           this.props.load(data.StreamTitle);
