@@ -9,7 +9,7 @@ import {
 
 export default () => {
 
-    let Index = CommingSoon;
+  let Index = Home;
 
   /**
    * Please keep routes in alphabetical order
