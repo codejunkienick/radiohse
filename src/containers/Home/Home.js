@@ -175,11 +175,11 @@ export default class Home extends Component {
     return (
       <div>
         <audio ref="stream128">
-          <source src="http://137.116.251.106/live" />
+          <source src="http://40.127.181.21/live" />
         </audio>
 
         <audio ref="stream64">
-          <source src="http://137.116.251.106/live64" />
+          <source src="http://40.127.181.21/live64" />
         </audio>
 
         <Dialog
