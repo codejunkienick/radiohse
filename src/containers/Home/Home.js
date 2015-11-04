@@ -73,7 +73,7 @@ export default class Home extends Component {
         avatar: '/photos/vadim.jpg',
         vk: 'http://vk.com/v.kropotin',
         instagram: 'https://instagram.com/vadim_kropotin/',
-        facebook: 'https://instagram.com/vadim_kropotin/'
+        facebook: 'https://www.facebook.com/vadim.kropotin'
       },
       {
         name: 'Екатерина Дегтерева',
