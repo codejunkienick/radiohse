@@ -47,9 +47,9 @@ export default class DesktopPlayer extends Component {
         <div className={styles.song}>
           {currentSong}
         </div>
-        {true &&
+        {streamEnabled &&
           <div className={styles.controls}>
-            {!false &&
+            {!voted &&
               <div>
                 <FlatButton
                   rippleColor="#ffffff"

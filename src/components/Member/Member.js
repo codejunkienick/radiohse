@@ -31,6 +31,7 @@ export default class Member extends Component {
     const paperClasses = styles.member + ' ' + ((tapped && windowWidth < 1024) ? styles.tapped : '');
     return (
       <Tappable
+        stopPropagation
         onTap={() => {
           this.setState({tapped: !tapped});
         }}
@@ -51,10 +52,34 @@ export default class Member extends Component {
             <div className={styles.memberName}>{name}</div>
             <div className={styles.rank}>{rank}</div>
             <div className={styles.socialLinks}>
-              { instagram && <a className={styles.instagram} href={instagram}><i className="icon-instagram-with-circle" /></a> }
-              { facebook && <a className={styles.facebook} href={facebook}><i className="icon-facebook-with-circle" /></a> }
-              { vk && <a className={styles.vk} href={vk}><i className="icon-vk-with-circle" /></a> }
-              { twitter && <a className={styles.twitter} href={twitter}><i className="icon-twitter-with-circle" /></a> }
+              { instagram &&
+                <Tappable onTap={() => {
+                  window.open(instagram);
+                }}>
+                  <a  target="_blank" className={styles.instagram} href={instagram}><i className="icon-instagram-with-circle" /></a> 
+                </Tappable>
+              }
+              { vk &&
+                <Tappable onTap={() => {
+                  window.open(vk);
+                }}>
+                  <a  target="_blank" className={styles.vk} href={vk}><i className="icon-vk-with-circle" /></a> 
+                </Tappable>
+              }
+              { facebook &&
+                <Tappable onTap={() => {
+                  window.open(facebook);
+                }}>
+                  <a  target="_blank" className={styles.facebook} href={facebook}><i className="icon-facebook-with-circle" /></a> 
+                </Tappable>
+              }
+              { twitter &&
+                <Tappable onTap={() => {
+                  window.open(twitter);
+                }}>
+                  <a  target="_blank" className={styles.twitter} href={twitter}><i className="icon-twitter-with-circle" /></a> 
+                </Tappable>
+              }
             </div>
           </div>
         </Paper>

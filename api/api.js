@@ -76,26 +76,27 @@ const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
 
-io.sockets.emit('releaseSite', false);
-
 let onair = false;
-var cron = schedule.scheduleJob('*/1 * * * *', function(){
+let req = {};
+let meta = {};
 
+var cron = schedule.scheduleJob('*/1 * * * *', function(){
 
     if(!onair) {
     
-      let req = icecast.get('http://40.127.181.21/live', function (res) {
+      req = icecast.get('http://40.127.181.21/live', function (res) {
 
         console.log("STREAM STATUS: " + res.statusCode);
 
         res.on('metadata', function (metadata) {
-          let meta = icecast.parse(metadata);
+          meta = icecast.parse(metadata);
+
           if (res.statusCode !== 200) {
             onair = false;
             console.log("OFF AIR");
             io.sockets.emit('playermeta', false);
           }
-            io.sockets.emit('playermeta', meta);
+
           if (Object.keys(meta).length > 0 && res.statusCode === 200) {
             onair = true;
             io.sockets.emit('playermeta', meta);
@@ -118,10 +119,10 @@ var cron = schedule.scheduleJob('*/1 * * * *', function(){
         console.log("STREAM SERVER ERROR: " + err);
         onair = false;
       });
-
     }
 });
 
+io.sockets.emit('playermeta', meta);
 
 if (config.apiPort) {
   const runnable = app.listen(config.apiPort, (err) => {
@@ -134,8 +135,12 @@ if (config.apiPort) {
 
   let meta = {};
 
+
   io.on('connection', (socket) => {
 
+    if (onair) {
+      socket.emit('playermeta', meta);
+    }
 
     socket.on('history', () => {
       for (let index = 0; index < bufferSize; index++) {

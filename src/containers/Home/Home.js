@@ -211,8 +211,8 @@ export default class Home extends Component {
                 else this.setState({headerOffset: '0px'});
               }}>
                 <div className={styles.social}>
-                  <a href="https://instagram.com/hseradio/"><i className="icon-instagram-with-circle" /></a>
-                  <a href="http://vk.com/hse_fm"><i className="icon-vk-with-circle" /></a>
+                  <a target="_blank" href="https://instagram.com/hseradio/"><i className="icon-instagram-with-circle" /></a>
+                  <a target="_blank" href="http://vk.com/hse_fm"><i className="icon-vk-with-circle" /></a>
                 </div>
                 <div className={styles.nav}>
                   <Scroll.Link to="header" spy smooth duration={500}>Главная</Scroll.Link>
@@ -248,12 +248,15 @@ export default class Home extends Component {
         <div className={styles.socialMobile}>
           <div className="container">
             <h2>Мы в соцсетях</h2>
-            <a className={styles.instagram} href="https://instagram.com/hseradio/"><i className="icon-instagram-with-circle" /></a>
-            <a className={styles.vk} href="http://vk.com/hse_fm"><i className="icon-vk-with-circle" /></a>
+            <a target="_blank" className={styles.instagram} href="https://instagram.com/hseradio/"><i className="icon-instagram-with-circle" /></a>
+            <a target="_blank" className={styles.vk} href="http://vk.com/hse_fm"><i className="icon-vk-with-circle" /></a>
           </div>
         </div>
 
         <MobilePlayer
+          vote={voteSong}
+          voting={voting}
+          voted={voted}
           streamEnabled={streamEnabled}
           dialog={this.refs.aboutSystem}
           currentSong={currentSong} />
@@ -276,7 +279,7 @@ export default class Home extends Component {
             <h2>О радио</h2>
             <p>
 Радиовышка – первый независимый студенческий информационно-развлекательный радио проект на базе Пермского кампуса Высшей школы экономики.
-Над проектом работает молодая команда, члены которой имеют общие интересы и различные музыкальные предпочтения. Основополагающая идея радио – дарить слушателям хорошее настроение. Эфир Радиовышки наполняется качественным и легальным музыкальным контентом, который поддерживается голосами активных и всегда интересных DJs.
+Над проектом работает молодая команда, члены которой имеют общие интересы и различные музыкальные предпочтения. Основополагающая идея радио – дарить слушателям хорошее настроение. Эфир Радиовышки наполняется качественным музыкальным контентом, который поддерживается голосами активных и всегда интересных DJs.
 Трансляция радио была запущена 21 октября 2015 года и с этого времени работает в режиме non-stop в формате 24/7.
             </p>
           </div>
