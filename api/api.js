@@ -86,10 +86,10 @@ var cron = schedule.scheduleJob('*/1 * * * *', function(){
     
       req = icecast.get('http://40.127.181.21/live', function (res) {
 
-        console.log("STREAM STATUS: " + res.statusCode);
 
         res.on('metadata', function (metadata) {
           meta = icecast.parse(metadata);
+          console.log(meta);
 
           if (res.statusCode !== 200) {
             onair = false;
@@ -122,8 +122,6 @@ var cron = schedule.scheduleJob('*/1 * * * *', function(){
     }
 });
 
-io.sockets.emit('playermeta', meta);
-
 if (config.apiPort) {
   const runnable = app.listen(config.apiPort, (err) => {
     if (err) {
@@ -132,9 +130,6 @@ if (config.apiPort) {
     console.info('----\n==> 🌎  API is running on port %s', config.apiPort);
     console.info('==> 💻  Send requests to http://localhost:%s', config.apiPort);
   });
-
-  let meta = {};
-
 
   io.on('connection', (socket) => {
 

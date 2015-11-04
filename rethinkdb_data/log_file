@@ -148,3 +148,22 @@
 2015-11-04T10:57:54.593525145 22.098805s info: Table 7e9614e3-4492-4d6b-947f-8f8abf0c8f3f: This server is Raft leader for term 10. Latest log index is 27.
 2015-11-04T10:57:54.644563792 22.149843s info: Table 259118b0-65bc-469b-9d0f-35ddeefb77e8: Starting a new Raft election for term 7.
 2015-11-04T10:57:54.679904571 22.185184s info: Table 259118b0-65bc-469b-9d0f-35ddeefb77e8: This server is Raft leader for term 7. Latest log index is 18.
+2015-11-04T11:47:52.780261699 3020.285541s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2015-11-04T11:47:52.780404224 3020.285684s notice: Shutting down client connections...
+2015-11-04T11:47:52.780581203 3020.285860s notice: All client connections closed.
+2015-11-04T11:47:52.780590994 3020.285870s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-11-04T11:47:52.809843890 3020.315124s notice: Storage engine shut down.
+2015-11-04T11:55:25.213193678 20.032397s notice: Running rethinkdb 2.1.5+2~0trusty (GCC 4.8.2)...
+2015-11-04T11:55:25.217242759 20.036448s notice: Running on Linux 3.13.0-24-generic x86_64
+2015-11-04T11:55:25.217351863 20.036554s notice: Loading data from directory /home/espresso/work/radiohse/rethinkdb_data
+2015-11-04T11:55:25.238505528 20.057711s info: Automatically using cache size of 2075 MB
+2015-11-04T11:55:25.239490780 20.058694s notice: Listening for intracluster connections on port 29015
+2015-11-04T11:55:25.277321842 20.096525s notice: Listening for client driver connections on port 28015
+2015-11-04T11:55:25.277552601 20.096755s notice: Listening for administrative HTTP connections on port 8080
+2015-11-04T11:55:25.277553515 20.096756s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2015-11-04T11:55:25.277553869 20.096756s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-11-04T11:55:25.277554114 20.096756s notice: Server ready, "espresso_pc_2go" 3e06253b-465c-4cb2-b25c-e1bd5d124cad
+2015-11-04T11:55:26.316886108 21.136089s info: Table 259118b0-65bc-469b-9d0f-35ddeefb77e8: Starting a new Raft election for term 8.
+2015-11-04T11:55:26.323240010 21.142443s info: Table 259118b0-65bc-469b-9d0f-35ddeefb77e8: This server is Raft leader for term 8. Latest log index is 21.
+2015-11-04T11:55:26.921231834 21.740435s info: Table 7e9614e3-4492-4d6b-947f-8f8abf0c8f3f: Starting a new Raft election for term 11.
+2015-11-04T11:55:26.933890236 21.753093s info: Table 7e9614e3-4492-4d6b-947f-8f8abf0c8f3f: This server is Raft leader for term 11. Latest log index is 30.
