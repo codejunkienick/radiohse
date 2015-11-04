@@ -15,7 +15,11 @@ export default function createStore(reduxReactRouter, getRoutes, createHistory, 
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
     )(_createStore);
   } else {
-    finalCreateStore = applyMiddleware(...middleware)(_createStore);
+    const persistState = require('redux-localstorage');
+    finalCreateStore = compose(
+      applyMiddleware(...middleware),
+      persistState()
+    )(_createStore);
   }
 
   finalCreateStore = reduxReactRouter({ getRoutes, createHistory })(finalCreateStore);
