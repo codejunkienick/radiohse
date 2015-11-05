@@ -40,8 +40,6 @@ app.use((req, res) => {
   let apiActions = actions;
   let sliceIndex = 0;
   
-  console.log(req);
-
   for (const actionName of matcher) {
 
     if (apiActions[actionName]) {
