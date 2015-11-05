@@ -34,7 +34,7 @@ export default function reducer(state = initialState, action = {}) {
 export function send(mail) {
   return {
     types: [SEND, SEND_SUCCESS, SEND_FAIL],
-    promise: (client) => client.post('/sendMail', {
+    promise: (client) => client.post('/mail', {
       data: {
         mail: mail
       }

@@ -57,7 +57,8 @@ export default class ContactForm extends Component {
       text: messageInput,
       subject: titleInput
     };
-    send(mail);
+    console.log(mail);
+    this.props.send(mail);
   }
 
   clearError() {

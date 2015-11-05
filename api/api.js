@@ -39,7 +39,8 @@ app.use((req, res) => {
   let params = null;
   let apiActions = actions;
   let sliceIndex = 0;
-
+  
+  console.log(req);
 
   for (const actionName of matcher) {
 
@@ -85,7 +86,6 @@ var cron = schedule.scheduleJob('*/1 * * * *', function(){
     if(!onair) {
     
       req = icecast.get('http://40.127.181.21/live', function (res) {
-
 
         res.on('metadata', function (metadata) {
           meta = icecast.parse(metadata);

@@ -1,2 +1,2 @@
 export vote from './vote';
-export sendMail from './sendMail';
+export mail from './mail';

@@ -13,6 +13,8 @@ export default function sendMail(req) {
   return new Promise((resolve, reject) => {
     const mail = req.body.mail;
 
+    console.log(req);
+
     if (isEmpty(mail) || isEmpty(mail.from) || isEmpty(mail.subject) || isEmpty(mail.text)) {
       reject("empty fields");
     }
