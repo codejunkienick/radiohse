@@ -98,6 +98,7 @@ export default class Home extends Component {
     window.addEventListener('resize', this.handleResize.bind(this));
 
     socket.on('playermeta', (data) => {
+      console.log(data);
       if (Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle)) {
         if (data.StreamTitle !== '') {
           this.props.load(data.StreamTitle);
@@ -107,6 +108,8 @@ export default class Home extends Component {
       } else if (Object.keys(data).length < 0) {
         this.props.stopStream();
       }
+
+      
     });
   }
 
@@ -173,11 +176,11 @@ export default class Home extends Component {
 
     return (
       <div>
-        <audio ref="stream128">
+        <audio ref="stream128" preload="none">
           <source src="http://40.127.181.21/live" />
         </audio>
 
-        <audio ref="stream64">
+        <audio ref="stream64" preload="none">
           <source src="http://40.127.181.21/live64" />
         </audio>
 
