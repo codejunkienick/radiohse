@@ -99,9 +99,7 @@ var cron = schedule.scheduleJob('*/1 * * * *', function(){
 
           if (Object.keys(meta).length > 0 && res.statusCode === 200) {
             onair = true;
-            setTimeout( () => {
-              io.sockets.emit('playermeta', meta);
-            } ,12000);
+            io.sockets.emit('playermeta', meta);
           } else {
             io.sockets.emit('playermeta', meta);
             onair = false;
