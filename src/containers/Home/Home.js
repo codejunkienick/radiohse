@@ -4,7 +4,6 @@ import Scroll from 'react-scroll';
 import Sticky from 'react-sticky';
 import {
   Dialog,
-  LeftNav,
 } from 'material-ui/lib/index';
 
 import {
@@ -98,7 +97,6 @@ export default class Home extends Component {
     window.addEventListener('resize', this.handleResize.bind(this));
 
     socket.on('playermeta', (data) => {
-      console.log(data);
       if (Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle)) {
         if (data.StreamTitle !== '') {
           this.props.load(data.StreamTitle);
@@ -122,13 +120,11 @@ export default class Home extends Component {
   }
 
   handlePlay(bitrate) {
-
     const stream128 = this.refs.stream128;
     const stream64 = this.refs.stream64;
 
     stream128.volume = 0.6;
     stream64.volume = 0.6;
-
 
     if (this.state.playing) {
       stream128.pause();
@@ -151,6 +147,7 @@ export default class Home extends Component {
 
     this.setState({playing: !this.state.playing});
   }
+
   updateVolume(volume) {
     const stream = this.refs.stream128;
     const stream64 = this.refs.stream64;
@@ -167,13 +164,6 @@ export default class Home extends Component {
       { text: 'Понял', onClick: () => {this.refs.aboutSystem.dismiss();} }
     ];
 
-    const menuItems = [
-      { route: 'get-started', text: 'Главная' },
-      { route: 'customization', text: 'Команда' },
-      { route: 'components', text: 'О радио' },
-      { route: 'components', text: 'Связаться' },
-    ];
-
     return (
       <div>
         <audio ref="stream128" preload="none">
@@ -187,12 +177,12 @@ export default class Home extends Component {
         <Dialog
           title="О нашей клевой системе"
           actions={standardActions}
+          modal
+          autoScrollBodyContent
           ref="aboutSystem">
 Понравился трек? Жми «ДА» и у него появится шанс попасть в наш специальный чарт, в котором мы прокрутим самые популярные треки прошедшего месяца. Кроме того, песни, набравшие большее количество голосов будут обсуждаться в нашей специальной программе нашими любимыми DJs!
 Может быть трек, выбранный именно тобой, попадет в список лучших уже сейчас!
         </Dialog>
-
-        <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
 
         <Scroll.Element name="header" className={styles.header}>
           <div style={{paddingTop: headerOffset}} className="container">

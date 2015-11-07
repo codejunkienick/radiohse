@@ -56,28 +56,28 @@ export default class Member extends Component {
                 <Tappable onTap={() => {
                   window.open(instagram);
                 }}>
-                  <a  target="_blank" className={styles.instagram} href={instagram}><i className="icon-instagram-with-circle" /></a> 
+                  <a target="_blank" className={styles.instagram} href={instagram}><i className="icon-instagram-with-circle" /></a>
                 </Tappable>
               }
               { vk &&
                 <Tappable onTap={() => {
                   window.open(vk);
                 }}>
-                  <a  target="_blank" className={styles.vk} href={vk}><i className="icon-vk-with-circle" /></a> 
+                  <a target="_blank" className={styles.vk} href={vk}><i className="icon-vk-with-circle" /></a>
                 </Tappable>
               }
               { facebook &&
                 <Tappable onTap={() => {
                   window.open(facebook);
                 }}>
-                  <a  target="_blank" className={styles.facebook} href={facebook}><i className="icon-facebook-with-circle" /></a> 
+                  <a target="_blank" className={styles.facebook} href={facebook}><i className="icon-facebook-with-circle" /></a>
                 </Tappable>
               }
               { twitter &&
                 <Tappable onTap={() => {
                   window.open(twitter);
                 }}>
-                  <a  target="_blank" className={styles.twitter} href={twitter}><i className="icon-twitter-with-circle" /></a> 
+                  <a target="_blank" className={styles.twitter} href={twitter}><i className="icon-twitter-with-circle" /></a>
                 </Tappable>
               }
             </div>

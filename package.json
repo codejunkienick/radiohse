@@ -1,9 +1,9 @@
 {
-  "name": "radiohse",
-  "description": "Website for radio hse.",
+  "name": "reactivecast",
+  "description": "Content Management System for online radiostations and podcasts.",
   "author": "Nickita Poteryaev <psychedelicespresso@gmail.com> (http://github.com/codejunkienick)",
   "license": "MIT",
-  "version": "0.0.5",
+  "version": "0.0.1",
   "keywords": [
     "react",
     "isomorphic",

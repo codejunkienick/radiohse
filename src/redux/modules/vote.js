@@ -1,4 +1,5 @@
 const LOAD = 'radiohse/vote/LOAD';
+const UPDATE = 'radiohse/vote/UPDATE';
 const STOP = 'radiohse/vote/STOP';
 const VOTE = 'radiohse/vote/VOTE';
 const VOTE_SUCCESS = 'radiohse/vote/VOTE_SUCCESS';
@@ -17,9 +18,13 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loaded: true,
         currentSong: action.songname,
-        voted: false,
         streamEnabled: true,
       };
+    case UPDATE:
+      return {
+      ...state,
+      voted: false
+      }
     case STOP:
       return {
         ...state,
@@ -50,6 +55,16 @@ export default function reducer(state = initialState, action = {}) {
 
 export function isLoaded(globalState) {
   return globalState.vote.loaded;
+}
+
+export function isVoted(globalState, songname) {
+  return globalState.vote.voted && globalState.vote.songname === songname;
+}
+
+export function update() {
+  return {
+    type: UPDATE
+  }
 }
 
 export function load(songname) {
