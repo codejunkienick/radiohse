@@ -19,6 +19,7 @@ export default function sendMail(req) {
 
     const mailOptions = {
       ...mail,
+      text: mail.text + '\n-------------\n' + mail.from,
       from: '<' + mail.from + '>',
       to: 'radiohseperm@gmail.com'
     }
