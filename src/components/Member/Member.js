@@ -4,6 +4,18 @@ import {
 } from 'material-ui/lib/index';
 import Tappable from 'react-tappable';
 
+const SocialLink = (link, style, name) => {
+  return (
+    <Tappable onTap={(event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      window.open(link);
+    }}>
+    <a onClick={(event) => {event.preventDefault();}} className={style} href={link}><i className={'icon-' + name + '-with-circle'} /></a>
+  </Tappable>
+  );
+};
+
 export default class Member extends Component {
   static propTypes = {
     windowWidth: PropTypes.string,
@@ -53,31 +65,38 @@ export default class Member extends Component {
             <div className={styles.rank}>{rank}</div>
             <div className={styles.socialLinks}>
               { instagram &&
-                <Tappable onTap={() => {
-                  window.open(instagram);
-                }}>
-                  <a target="_blank" className={styles.instagram} href={instagram}><i className="icon-instagram-with-circle" /></a>
-                </Tappable>
+                <SocialLink link={instagram} style={styles.instagram} name="instagram" />
               }
               { vk &&
-                <Tappable onTap={() => {
+                <Tappable onTap={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
                   window.open(vk);
                 }}>
-                  <a target="_blank" className={styles.vk} href={vk}><i className="icon-vk-with-circle" /></a>
+                <a onClick={(event) => {
+                  event.stopPropagation();
+                  event.preventDefault();
+                }} className={styles.vk} href={vk}><i className="icon-vk-with-circle" /></a>
                 </Tappable>
               }
               { facebook &&
-                <Tappable onTap={() => {
+                <Tappable onTap={(event) => {
+                  event.stopPropagation();
+                  event.preventDefault();
                   window.open(facebook);
                 }}>
-                  <a target="_blank" className={styles.facebook} href={facebook}><i className="icon-facebook-with-circle" /></a>
+                <a onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }} className={styles.facebook} href={facebook}><i className="icon-facebook-with-circle" /></a>
                 </Tappable>
               }
               { twitter &&
-                <Tappable onTap={() => {
+                <Tappable onTap={(event) => {
+                  event.preventDefault();
                   window.open(twitter);
                 }}>
-                  <a target="_blank" className={styles.twitter} href={twitter}><i className="icon-twitter-with-circle" /></a>
+                  <a onClick={(event) => {event.preventDefault();}} className={styles.twitter} href={twitter}><i className="icon-twitter-with-circle" /></a>
                 </Tappable>
               }
             </div>
