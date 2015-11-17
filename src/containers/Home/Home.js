@@ -15,6 +15,7 @@ import {
   MobilePlayButton
 } from 'components';
 import * as voteActions from 'redux/modules/vote';
+import { load as loadPlayer } from 'redux/modules/player';
 
 @connect(
   state => ({
@@ -95,6 +96,13 @@ export default class Home extends Component {
   componentDidMount() {
     this.setState({windowWidth: window.innerWidth});
     window.addEventListener('resize', this.handleResize.bind(this));
+
+    const streams = {
+      '64': this.refs.stream64,
+      '128': this.refs.stream128
+    }
+
+    loadPlayer(streams);
 
     socket.on('playermeta', (data) => {
       if (Object.keys(data).length > 0 && (!this.props.loaded || this.props.currentSong !== data.StreamTitle)) {

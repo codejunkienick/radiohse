@@ -1,9 +1,9 @@
-const LOAD = 'radiohse/vote/LOAD';
-const UPDATE = 'radiohse/vote/UPDATE';
-const STOP = 'radiohse/vote/STOP';
-const VOTE = 'radiohse/vote/VOTE';
-const VOTE_SUCCESS = 'radiohse/vote/VOTE_SUCCESS';
-const VOTE_FAIL = 'radiohse/vote/VOTE_FAIL';
+const LOAD = 'reactivecast/vote/LOAD';
+const UPDATE = 'reactivecast/vote/UPDATE';
+const STOP = 'reactivecast/vote/STOP';
+const VOTE = 'reactivecast/vote/VOTE';
+const VOTE_SUCCESS = 'reactivecast/vote/VOTE_SUCCESS';
+const VOTE_FAIL = 'reactivecast/vote/VOTE_FAIL';
 
 const initialState = {
   loaded: false,
@@ -19,6 +19,7 @@ export default function reducer(state = initialState, action = {}) {
         loaded: true,
         currentSong: action.songname,
         streamEnabled: true,
+        voted: false,
       };
     case UPDATE:
       return {
